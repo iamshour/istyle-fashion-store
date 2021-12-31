@@ -1,0 +1,46 @@
+#not-found #numbers {
+	animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+	animation-delay: 0s;
+}
+#not-found #bubble {
+	animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn,
+		3s Infinite linear floating;
+	animation-delay: 0s, 1s;
+}
+#not-found #character {
+	animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+	animation-delay: 0s;
+}
+@keyframes slideLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes floating {
+	0% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-7px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}

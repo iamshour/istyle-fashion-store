@@ -1,0 +1,9 @@
+COLOR-PALETTE:
+
+Fill-1: #E6F4F1
+Fill-2: #002C57
+
+Bg-1: #2092C7
+Bg-2: #A0C95F
+
+optional: #EA9A27

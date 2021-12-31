@@ -3,7 +3,10 @@
 		"baseUrl": "./",
 		"paths": {
 			"@comps/*": ["comps/*"],
-			"@styles/*": ["styles/*"]
+			"@styles/*": ["styles/*"],
+			"@context/*": ["context/*"],
+			"@server/*": ["server/*"],
+			"@pages/*": ["pages/*"]
 		}
 	}
 }

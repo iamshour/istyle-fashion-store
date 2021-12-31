@@ -1,16 +1,99 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import "./resets";
+@import "./mixins";
+@import "@pages/404/404";
+@import "@pages/auth/auth";
+@import "@pages/cart/cart";
+@import "@pages/profile/profile";
+@import "@comps/layout/layout";
+
+.input-bar {
+	input {
+		padding: 1.2rem;
+		border-radius: 16px;
+		background: var(--grad-1);
+		border: 1px solid var(--blue);
+
+		&:focus {
+			border-color: var(--dark-blue);
+		}
+	}
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.input-bar-icon {
+	padding: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background: var(--grad-1);
+	border-radius: 16px;
+	border: 1px solid var(--blue);
+
+	.icon {
+		color: var(--blue);
+		font-size: 2.4rem;
+		margin-right: 0.8rem;
+	}
+
+	input {
+		border: 0;
+		background: none;
+	}
+	&:focus-within {
+		border-color: var(--dark-blue);
+		.icon {
+			color: var(--dark-blue);
+		}
+	}
 }
 
-* {
-  box-sizing: border-box;
+textarea {
+	width: 100%;
+	border-radius: 16px;
+	padding: 1rem;
+	color: var(--font-1);
 }
+
+//BUTTONS
+.btn {
+	@include centering;
+	@include pressed;
+	cursor: pointer;
+	color: white;
+	background: var(--bg-1);
+	transition: all 200ms ease-in-out;
+	p,
+	.icon {
+		font-size: inherit;
+		color: inherit;
+	}
+}
+
+.btn-small {
+	padding: 0.5rem 1rem;
+	font-size: 1.4rem;
+	border-radius: 8px;
+	.icon {
+		margin-left: 0.4rem;
+	}
+}
+.btn-medium {
+	padding: 0.8rem 1.6rem;
+	font-size: 2rem;
+	border-radius: 16px;
+	.icon {
+		margin-left: 0.6em;
+	}
+}
+
+// @media (min-width: $breakpoint-large-desktop) {
+// 	html {
+// 		font-size: 11px;
+// 	}
+// }
+// @media (min-width: $breakpoint-max-desktop) {
+// 	html {
+// 		font-size: 12px;
+// 		min-height: 100vh;
+// 		background: var(--app-bg-color);
+// 	}
+// }
