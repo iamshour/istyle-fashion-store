@@ -1,7 +1,7 @@
 import Router from "next/router"
 import { useEffect } from "react"
 
-const profile = () => {
+const Profile = () => {
 	let user = !null
 
 	useEffect(() => {
@@ -15,4 +15,4 @@ const profile = () => {
 	)
 }
 
-export default profile
+export default Profile
