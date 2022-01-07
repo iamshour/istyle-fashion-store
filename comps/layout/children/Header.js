@@ -11,7 +11,12 @@ import { BsFillMoonFill } from "react-icons/bs"
 const Header = () => {
 	const router = useRouter()
 	const [navActive, setNavActive] = useState(false)
+	const [_document, set_document] = useState(null)
 	const user = !null
+
+	useEffect(() => {
+		set_document(document)
+	}, [])
 
 	const [theme, setTheme] = useState("light")
 
@@ -48,41 +53,43 @@ const Header = () => {
 		}
 	}
 
+	if (navActive) {
+		_document?.querySelector("html")?.style?.overflowY = "hidden"
+	} else {
+		_document?.querySelector("html")?.style?.overflowY = "unset"
+	}
+
 	return (
 		<header>
 			<button
-				className={`nav-btn ${navActive ? "nav-active" : ""}`}
+				className={`nav-btn ${navActive ? "nav-btn-active" : ""}`}
 				onClick={() => setNavActive((prev) => !prev)}>
 				<span></span>
 				<span></span>
 				<span></span>
 			</button>
-			<nav>
-				<div className='nav-wrapper'>
+			<nav className={navActive ? "nav-active" : ""}>
 					<Link href='/'>Profile</Link>
 					<Link href='/'>All Products</Link>
-					<Link href='/'>Fashion</Link>
-					<Link href='/'>Home Appliance</Link>
-					<Link href='/'>Tech</Link>
+					<Link href='/'>Men's fashion</Link>
+					<Link href='/'>Women's fashion</Link>
+					<Link href='/'>Kids fashion</Link>
 					<Link href='/'>Contact us</Link>
 					<Link href='/'>Newsletter</Link>
 					<Link href='/'>
 						<img
 							className='logo'
-							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640881562/shour-store/app-logo_dowk3q.png'
-							alt='shour-store logo'
+							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1641586025/istyle-fashion-store/istyle-logo_topsp1.png'
+							alt='istyle fashion store logo'
 						/>
 					</Link>
-					{/* <div className='theme-wrapper'>
-						<button onClick={switcher}>
-							{theme === "light" ? (
-								<BsFillMoonFill className='icon' />
-							) : (
-								<FiSun className='icon' />
-							)}
-						</button>
-					</div> */}
-				</div>
+					<button onClick={switcher} className='theme-wrapper'>
+						{theme === "light" ? (
+							<BsFillMoonFill className='icon' />
+						) : (
+							<FiSun className='icon' />
+						)}
+					</button>
 			</nav>
 			<Link href='/cart'>
 				<a className={`cart ${isActive("/cart")}`}>

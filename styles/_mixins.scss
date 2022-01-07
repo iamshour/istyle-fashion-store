@@ -28,6 +28,7 @@
 }
 
 @mixin fade-in {
+	opacity: 0;
 	animation: fade-in 0.2s ease-in forwards;
 	@keyframes fade-in {
 		100% {
@@ -36,17 +37,17 @@
 	}
 }
 
-// @mixin backdrop {
-// 	position: fixed;
-// 	z-index: 99999;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100vw;
-// 	max-width: unset;
-// 	height: 100vh;
-// 	background: rgba(0, 0, 0, 0.95);
-// 	@include centering;
-// 	border-radius: 0;
-// 	margin: 0;
-// 	cursor: pointer;
-// }
+@mixin backdrop {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	max-width: unset;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.85);
+	@include centering;
+	border-radius: 0;
+	margin: 0;
+	cursor: pointer;
+}

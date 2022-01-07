@@ -1,5 +1,5 @@
 {
-	"name": "shour-store",
+	"name": "istyle-fashion-store",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",

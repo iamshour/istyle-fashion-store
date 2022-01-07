@@ -5,6 +5,17 @@ export default function Home() {
 		<>
 			<Meta title={"Shour Store | Homepage"} />
 			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
+			<div className='home-page'>HOMEPAGE</div>
 		</>
 	)
 }

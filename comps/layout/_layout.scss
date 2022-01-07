@@ -10,26 +10,30 @@ footer {
 }
 
 header {
+	width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 1.6rem;
+	// background: #f99;
 
 	.nav-btn {
-		width: 6rem;
-		height: 6rem;
+		width: 5rem;
+		height: 4rem;
 		position: relative;
-		@include centering;
 		cursor: pointer;
 		overflow: hidden;
+		z-index: 15;
 
 		span {
 			position: absolute;
 			width: 30px;
 			height: 3px;
-			background: var(--dark-blue);
+			background: var(--font);
+			background: var(--bg-dark);
 			border-radius: 4px;
 			transition: 500ms;
+			left: 15px;
 
 			&:nth-of-type(1) {
 				transform: translateY(-8px);
@@ -43,10 +47,9 @@ header {
 			}
 		}
 	}
-	.nav-active {
+	.nav-btn-active {
 		span {
 			&:nth-of-type(3) {
-				// transform: translateX(50px);
 				opacity: 0;
 				width: 0;
 			}
@@ -65,28 +68,74 @@ header {
 
 	nav {
 		display: none;
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: var(--app-bg);
+		opacity: 0;
+		animation: nav-slide 0.4s ease-in-out forwards 0.2s;
+		@keyframes nav-slide {
+			0% {
+				opacity: 0;
+				transform: translateY(-100px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0px);
+			}
+		}
+		padding: 3rem;
+
+		a {
+			font-size: 3rem;
+			font-weight: 700;
+
+			font-family: "Playfair Display", serif;
+			font-weight: 500;
+			font-style: italic;
+		}
 
 		.logo {
 			width: 16rem;
 			cursor: pointer;
 			@include pressed;
 		}
+
+		.theme-wrapper {
+			position: absolute;
+			bottom: 2.4rem;
+			left: 2.4rem;
+
+			.icon {
+				font-size: 3.2rem;
+				color: var(--bg-dark);
+			}
+		}
+	}
+
+	.nav-active {
+		@include centering;
+		flex-direction: column;
 	}
 
 	.cart {
 		@include centering;
 		cursor: pointer;
 		padding: 0.8rem;
-		transition: all 250ms ease-in-out;
 
 		.icon {
 			font-size: 3rem;
-			color: var(--blue);
-		}
-
-		&:hover,
-		&:active {
-			color: var(--green);
+			color: var(--font);
+			transition: color 250ms ease-in-out;
+			&:hover,
+			&:active {
+				color: var(--bg);
+			}
 		}
 	}
 
@@ -111,7 +160,6 @@ header {
 	}
 }
 
-.home-page,
 .auth-page,
 .profile-page,
 .cart-page {
