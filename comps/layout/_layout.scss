@@ -15,7 +15,6 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	padding: 1.6rem;
-	// background: #f99;
 
 	.nav-btn {
 		width: 5rem;
@@ -28,11 +27,10 @@ header {
 		span {
 			position: absolute;
 			width: 30px;
-			height: 3px;
+			height: 2px;
 			background: var(--font);
-			background: var(--bg-dark);
 			border-radius: 4px;
-			transition: 500ms;
+			transition: all 400ms ease-in-out;
 			left: 15px;
 
 			&:nth-of-type(1) {
@@ -49,6 +47,8 @@ header {
 	}
 	.nav-btn-active {
 		span {
+			background: var(--bg-dark);
+
 			&:nth-of-type(3) {
 				opacity: 0;
 				width: 0;
@@ -67,6 +67,7 @@ header {
 	}
 
 	nav {
+		padding: 8rem 3rem 3rem 3rem;
 		display: none;
 		position: fixed;
 		width: 100%;
@@ -82,81 +83,132 @@ header {
 		@keyframes nav-slide {
 			0% {
 				opacity: 0;
-				transform: translateY(-100px);
+				transform: translateY(-50px);
 			}
 			100% {
 				opacity: 1;
 				transform: translateY(0px);
 			}
 		}
-		padding: 3rem;
 
-		a {
-			font-size: 3rem;
-			font-weight: 700;
-
-			font-family: "Playfair Display", serif;
-			font-weight: 500;
-			font-style: italic;
-		}
-
-		.logo {
-			width: 16rem;
-			cursor: pointer;
-			@include pressed;
-		}
-
-		.theme-wrapper {
+		.profile-btn {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 			position: absolute;
-			bottom: 2.4rem;
-			left: 2.4rem;
+			top: 2.4rem;
+			right: 2.4rem;
+			cursor: pointer;
 
-			.icon {
-				font-size: 3.2rem;
+			.img {
+				margin-bottom: 0.6rem;
+				border: 1px solid var(--font);
+				border-radius: 50%;
+				overflow: hidden;
+				width: 45px;
+				height: 45px;
+			}
+			h4 {
+				transition: all 250ms ease-in-out;
+				font-size: 1.3rem;
+				color: var(--font);
+			}
+			&:hover,
+			&:active {
+				h4 {
+					color: var(--bg-dark);
+				}
+			}
+		}
+
+		.nav-links {
+			h4 {
+				width: max-content;
+				height: auto;
+				position: relative;
+				cursor: pointer;
+				transition: color 200ms ease-in;
+				font-size: 2.2rem;
+				margin: 3.6rem 0;
+				padding-bottom: 0.5rem;
+				letter-spacing: 1px;
+				font-weight: 300;
+
+				&:hover,
+				&:active {
+					color: var(--bg-dark);
+				}
+			}
+
+			h4.active {
 				color: var(--bg-dark);
+				&::before {
+					position: absolute;
+					content: "";
+					background: var(--bg-dark);
+					border-radius: 4px;
+					opacity: 0;
+					@include fade-in;
+					width: 100%;
+					bottom: 1px;
+					height: 3px;
+					left: 0px;
+					transform: unset;
+				}
+			}
+		}
+
+		.nav-bottom {
+			width: 100%;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+
+			.logo {
+				cursor: pointer;
+				@include pressed;
+				overflow: visible;
+				width: 18rem;
+				height: auto;
+			}
+
+			.theme-wrapper {
+				margin-bottom: 0.8rem;
+				@include icon-unactive;
+
+				.icon {
+					font-size: 3.2rem;
+					color: var(--bg-dark);
+				}
+			}
+			.theme-wrapper.active {
+				@include icon-active;
 			}
 		}
 	}
 
 	.nav-active {
-		@include centering;
+		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
+		z-index: 14;
 	}
 
 	.cart {
 		@include centering;
-		cursor: pointer;
-		padding: 0.8rem;
+		@include icon-unactive;
+		color: var(--font);
 
 		.icon {
 			font-size: 3rem;
-			color: var(--font);
-			transition: color 250ms ease-in-out;
-			&:hover,
-			&:active {
-				color: var(--bg);
-			}
+			color: inherit;
+			position: relative;
+			right: 1px;
 		}
 	}
-
-	.active {
-		color: var(--green);
-		position: relative;
-
-		&::before {
-			width: 28px;
-			height: 2px;
-			position: absolute;
-			content: "";
-			bottom: 3px;
-			left: 50%;
-			right: 50%;
-			transform: translate(-50%, -50%);
-			background: var(--green);
-			border-radius: 4px;
-			opacity: 0;
-			@include fade-in;
-		}
+	.cart.active {
+		@include icon-active;
 	}
 }
 
@@ -165,57 +217,3 @@ header {
 .cart-page {
 	min-height: calc(100vh - 7.8rem);
 }
-
-// .dropdown-box {
-// 	position: absolute;
-// 	top: 6.2rem;
-// 	right: 24px;
-// 	background: var(--light-green);
-// 	border-radius: 4px;
-// 	border: 1px solid var(--green);
-// 	opacity: 0;
-// 	transform: translateY(-50px);
-// 	animation: slide-in 150ms ease-in-out forwards;
-// 	@keyframes slide-in {
-// 		0% {
-// 			opacity: 0;
-// 			transform: translateY(-14px);
-// 		}
-// 		100% {
-// 			opacity: 1;
-// 			transform: translateY(0px);
-// 		}
-// 	}
-
-// 	&:hover,
-// 	&:active {
-// 		border-color: var(--blue);
-// 	}
-
-// 	.link {
-// 		cursor: pointer;
-// 		font-size: 1.8rem;
-// 		color: var(--dark-blue);
-// 		padding: 2rem 2rem 2rem 1.2rem;
-// 		display: flex;
-// 		justify-content: flex-start;
-// 		align-items: center;
-
-// 		width: 100%;
-
-// 		p,
-// 		.icon {
-// 			color: inherit;
-// 			font-size: inherit;
-// 		}
-// 		.icon {
-// 			margin-right: 0.8rem;
-// 		}
-
-// 		&:hover,
-// 		&:active {
-// 			background: var(--blue);
-// 			color: var(--light-green);
-// 		}
-// 	}
-// }

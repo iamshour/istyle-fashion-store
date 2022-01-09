@@ -1,24 +1,23 @@
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
+import Logo from "@comps/utility/Logo"
 //ICONS
-import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai"
-import { CgProfile } from "react-icons/cg"
-import { BiLogOut, BiLogIn } from "react-icons/bi"
-import { FiSun } from "react-icons/fi"
+import { AiOutlineShoppingCart } from "react-icons/ai"
 import { BsFillMoonFill } from "react-icons/bs"
+import { FiSun } from "react-icons/fi"
 
 const Header = () => {
 	const router = useRouter()
 	const [navActive, setNavActive] = useState(false)
-	const [_document, set_document] = useState(null)
-	const user = !null
+	const [customDoc, setCustomDoc] = useState(null)
+	const [theme, setTheme] = useState("light")
+	const user = null
 
 	useEffect(() => {
-		set_document(document)
+		setCustomDoc(document)
 	}, [])
-
-	const [theme, setTheme] = useState("light")
 
 	useEffect(() => {
 		setTheme(localStorage.getItem("theme"))
@@ -54,10 +53,20 @@ const Header = () => {
 	}
 
 	if (navActive) {
-		_document?.querySelector("html")?.style?.overflowY = "hidden"
+		customDoc?.querySelector("html")?.style?.overflowY == "hidden"
 	} else {
-		_document?.querySelector("html")?.style?.overflowY = "unset"
+		customDoc?.querySelector("html")?.style?.overflowY == "unset"
 	}
+
+	const links = [
+		{ link: "/", title: "Home" },
+		{ link: "/products", title: "All Products" },
+		{ link: "/men", title: "Men's fashion" },
+		{ link: "/women", title: "Women's fashion" },
+		{ link: "/kids", title: "Kid's fashion" },
+		{ link: "/contact", title: "Contact Us" },
+		{ link: "#newsletter", title: "Newsletter" },
+	]
 
 	return (
 		<header>
@@ -69,27 +78,51 @@ const Header = () => {
 				<span></span>
 			</button>
 			<nav className={navActive ? "nav-active" : ""}>
-					<Link href='/'>Profile</Link>
-					<Link href='/'>All Products</Link>
-					<Link href='/'>Men's fashion</Link>
-					<Link href='/'>Women's fashion</Link>
-					<Link href='/'>Kids fashion</Link>
-					<Link href='/'>Contact us</Link>
-					<Link href='/'>Newsletter</Link>
-					<Link href='/'>
-						<img
-							className='logo'
-							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1641586025/istyle-fashion-store/istyle-logo_topsp1.png'
-							alt='istyle fashion store logo'
-						/>
-					</Link>
-					<button onClick={switcher} className='theme-wrapper'>
+				<Link href='/profile'>
+					<div className='profile-btn' onClick={() => setNavActive(false)}>
+						<div className='img'>
+							<Image
+								src={
+									user && user?.avatar
+										? user?.avatar
+										: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png"
+								}
+								width={45}
+								height={45}
+								objectFit='cover'
+							/>
+						</div>
+						<h4>{user ? user?.name : "Sign in"}</h4>
+					</div>
+				</Link>
+				<div className='nav-links'>
+					{links?.map((item, index) => (
+						<Link href={item.link} key={index}>
+							<h4 className={isActive(item.link)} onClick={() => setNavActive(false)}>
+								{item.title}
+							</h4>
+						</Link>
+					))}
+				</div>
+				<div className='nav-bottom'>
+					<button
+						onClick={switcher}
+						className={`theme-wrapper ${theme === "dark" ? "active" : ""}`}>
 						{theme === "light" ? (
 							<BsFillMoonFill className='icon' />
 						) : (
 							<FiSun className='icon' />
 						)}
 					</button>
+					<Link href='/'>
+						<a className='logo' onClick={() => setNavActive(false)}>
+							<Logo
+								mainCol={theme === "light" ? "#000" : "#F3DE91"}
+								secondCol={theme === "light" ? "#F3DE91" : "#000"}
+							/>
+						</a>
+					</Link>
+				</div>
 			</nav>
 			<Link href='/cart'>
 				<a className={`cart ${isActive("/cart")}`}>
@@ -101,6 +134,3 @@ const Header = () => {
 }
 
 export default Header
-{
-	/* <AiOutlineUser className='icon' /> */
-}

@@ -1,5 +1,6 @@
 import Router from "next/router"
 import { useEffect } from "react"
+import { BiLogOut, BiLogIn } from "react-icons/bi"
 
 const Profile = () => {
 	let user = !null
