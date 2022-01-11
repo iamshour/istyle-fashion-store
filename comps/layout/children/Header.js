@@ -20,10 +20,14 @@ const Header = () => {
 	}, [])
 
 	useEffect(() => {
-		setTheme(localStorage.getItem("theme"))
+		setTheme(
+			localStorage.getItem("theme")
+				? localStorage.getItem("theme")
+				: localStorage?.setItem("theme", theme)
+		)
 
 		document.documentElement.setAttribute("data-theme", theme)
-	}, [theme])
+	}, [theme, router.pathname])
 
 	const saveTheme = (theme) => {
 		setTheme(theme)
@@ -34,13 +38,12 @@ const Header = () => {
 	const switcher = () => {
 		if (theme === "light") {
 			saveTheme("dark")
-			//styling
-			// document.querySelector("body").style.transition =
-			// 	"background 250ms ease-in-out, color 250ms ease-in-out"
+			document.querySelector("body").style.transition =
+				"background 250ms ease-in-out, color 250ms ease-in-out"
 		} else {
 			saveTheme("light")
-			// document.querySelector("body").style.transition =
-			// 	"background 250ms ease-in-out, color 250ms ease-in-out"
+			document.querySelector("body").style.transition =
+				"background 250ms ease-in-out, color 250ms ease-in-out"
 		}
 	}
 
@@ -68,6 +71,15 @@ const Header = () => {
 		{ link: "#newsletter", title: "Newsletter" },
 	]
 
+	const profile = {
+		link: user ? "/profile" : "/auth",
+		title: user ? user?.name : "Sign in",
+		avatar:
+			user && user?.avatar
+				? user?.avatar
+				: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png",
+	}
+
 	return (
 		<header>
 			<button
@@ -78,21 +90,12 @@ const Header = () => {
 				<span></span>
 			</button>
 			<nav className={navActive ? "nav-active" : ""}>
-				<Link href='/profile'>
+				<Link href={profile.link}>
 					<div className='profile-btn' onClick={() => setNavActive(false)}>
 						<div className='img'>
-							<Image
-								src={
-									user && user?.avatar
-										? user?.avatar
-										: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png"
-								}
-								width={45}
-								height={45}
-								objectFit='cover'
-							/>
+							<Image src={profile.avatar} width={45} height={45} objectFit='cover' />
 						</div>
-						<h4>{user ? user?.name : "Sign in"}</h4>
+						<h4>{profile.title}</h4>
 					</div>
 				</Link>
 				<div className='nav-links'>
@@ -117,8 +120,8 @@ const Header = () => {
 					<Link href='/'>
 						<a className='logo' onClick={() => setNavActive(false)}>
 							<Logo
-								mainCol={theme === "light" ? "#000" : "#F3DE91"}
-								secondCol={theme === "light" ? "#F3DE91" : "#000"}
+								mainCol={theme === "light" || theme === null ? "#000" : "#F3DE91"}
+								secondCol={theme === "light" || theme === null ? "#F3DE91" : "#000"}
 							/>
 						</a>
 					</Link>

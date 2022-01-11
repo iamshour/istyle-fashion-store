@@ -137,7 +137,7 @@ input {
 	font-size: 1.6rem;
 	line-height: 2.4rem;
 	&::placeholder {
-		color: var(--bg);
+		color: var(--bg-dark);
 	}
 	&:-webkit-autofill,
 	&:-webkit-autofill:hover,
