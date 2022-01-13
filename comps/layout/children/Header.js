@@ -17,7 +17,7 @@ const Header = () => {
 
 	useEffect(() => {
 		setCustomDoc(document)
-	}, [])
+	}, [navActive])
 
 	useEffect(() => {
 		setTheme(
@@ -55,12 +55,6 @@ const Header = () => {
 		}
 	}
 
-	if (navActive) {
-		customDoc?.querySelector("html")?.style?.overflowY == "hidden"
-	} else {
-		customDoc?.querySelector("html")?.style?.overflowY == "unset"
-	}
-
 	const links = [
 		{ link: "/", title: "Home" },
 		{ link: "/products", title: "All Products" },
@@ -80,11 +74,17 @@ const Header = () => {
 				: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png",
 	}
 
+	useEffect(() => {
+		navActive ? customDoc?.querySelector("html")?.style?.overflowY = "hidden" : customDoc?.querySelector("html")?.style?.overflowY = "unset"
+	}, [navActive])
+
 	return (
 		<header>
 			<button
 				className={`nav-btn ${navActive ? "nav-btn-active" : ""}`}
-				onClick={() => setNavActive((prev) => !prev)}>
+				onClick={() => {
+					setNavActive((prev) => !prev)
+				}}>
 				<span></span>
 				<span></span>
 				<span></span>

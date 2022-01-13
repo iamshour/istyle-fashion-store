@@ -1,19 +1,255 @@
+.auth-container {
+	background-color: var(--app-bg);
+	background-image: var(--auth-page-bg);
+}
+
 .auth-page {
 	width: 100%;
-	height: calc(100vh - 96px);
-	@include centering;
-	flex-direction: column;
+	min-height: calc(100vh - 96px);
+	// color: #23f3de91;
 
 	.wrapper {
-		background-image: var(--grad-1);
 		padding: 3rem;
-		height: 85%;
-		width: 85%;
-		border-radius: 24px;
+		height: 100%;
+		width: 100%;
+
+		.svg-img {
+			width: 70%;
+			margin: 0 auto;
+
+			#floor {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+				animation-delay: 0s;
+			}
+			#shadows {
+				animation: 1s 1 forwards ease-in fadeIn;
+				animation-delay: 0s;
+			}
+			#clouds {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn,
+					1.5s Infinite linear floating;
+				animation-delay: 0s, 1s;
+			}
+			#plants {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+				animation-delay: 0s;
+			}
+			#shopping-cart {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+				animation-delay: 0s;
+			}
+			#device {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft,
+					1.5s Infinite linear wind;
+				animation-delay: 0s, 1s;
+			}
+			#character {
+				animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+				animation-delay: 0s;
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes floating {
+				0% {
+					opacity: 1;
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-10px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0px);
+				}
+			}
+			@keyframes slideDown {
+				0% {
+					opacity: 0;
+					transform: translateY(-30px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			@keyframes slideLeft {
+				0% {
+					opacity: 0;
+					transform: translateX(-30px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateX(0);
+				}
+			}
+			@keyframes slideRight {
+				0% {
+					opacity: 0;
+					transform: translateX(30px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateX(0);
+				}
+			}
+			@keyframes wind {
+				0% {
+					transform: rotate(0deg);
+				}
+				25% {
+					transform: rotate(0.3deg);
+				}
+				75% {
+					transform: rotate(-0.3deg);
+				}
+			}
+		}
+
 		form {
-			padding: 2rem;
-			border-radius: 24px;
+			padding: 4rem 3rem;
+			border-radius: 16px;
 			@include glass;
+
+			.input-bars,
+			.forgot-pass,
+			.btns,
+			.bottom {
+				position: relative;
+				z-index: inherit;
+			}
+
+			.input-bars {
+				margin-bottom: 4rem;
+
+				.input-bar-icon:nth-of-type(1) {
+					margin-bottom: 2rem;
+				}
+
+				.pass-input {
+					padding-right: 4rem;
+					position: relative;
+
+					.eye {
+						cursor: pointer;
+						margin: 0;
+						font-size: 2.2rem;
+						position: absolute;
+						right: 0;
+						top: 50%;
+						bottom: 50%;
+						transform: translate(-50%, -50%);
+
+						&:hover,
+						&:active {
+							transform: translate(-50%, -50%) scale(1.02);
+						}
+					}
+				}
+			}
+
+			.signup-bars {
+				.input-bar {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					margin-bottom: 2em;
+
+					input:nth-of-type(1) {
+						margin-right: 2rem;
+					}
+				}
+				.input-bar-icon {
+					&:nth-of-type(2),
+					&:nth-of-type(3) {
+						margin-bottom: 2rem;
+					}
+				}
+			}
+
+			.forgot-pass {
+				color: var(--main-bg-dark);
+				margin-bottom: 5rem;
+				font-size: 1.4rem;
+				@include line-hover;
+			}
+
+			.btns {
+				margin-bottom: 4rem;
+				@include centering;
+				flex-direction: column;
+
+				h4 {
+					font-size: 1.2rem;
+					margin: 1.2rem 0;
+					color: var(--main-bg-light);
+				}
+
+				.btn,
+				.btn-google {
+					p {
+						font-size: 14px;
+					}
+				}
+
+				.btn {
+					width: 219.32px;
+					height: 46px;
+				}
+
+				.btn-google {
+					cursor: pointer;
+					display: flex;
+					align-items: center;
+					height: 46px;
+					padding-right: 32px;
+					position: relative;
+					@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+					font-family: "Roboto", sans-serif;
+					background: var(--google-btn-bg);
+					color: var(--google-btn-font);
+					white-space: nowrap;
+					transition: all 250ms ease-in-out;
+					box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+
+					svg {
+						background: #fff;
+						width: 46px;
+						margin-right: 16px;
+					}
+					&:hover,
+					&:active,
+					&:focus {
+						background: var(--google-btn-bg-pressed);
+						box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+					}
+				}
+			}
+
+			.bottom {
+				width: 100%;
+				@include centering;
+				justify-content: flex-start;
+				h2 {
+					font-size: 1.5rem;
+					color: var(--font);
+					margin-right: 0.8rem;
+				}
+				button {
+					@include line-hover;
+
+					p {
+						font-size: 1.5rem;
+						font-weight: 700;
+						color: var(--main-bg-dark);
+					}
+				}
+			}
 		}
 	}
 }

@@ -27,8 +27,8 @@ header {
 		span {
 			position: absolute;
 			width: 30px;
-			height: 2px;
-			background: var(--font);
+			height: 3px;
+			background: var(--main-bg-dark);
 			border-radius: 4px;
 			transition: all 400ms ease-in-out;
 			left: 15px;
@@ -47,7 +47,7 @@ header {
 	}
 	.nav-btn-active {
 		span {
-			background: var(--bg-dark);
+			background: var(--main-bg-light);
 
 			&:nth-of-type(3) {
 				opacity: 0;
@@ -103,7 +103,7 @@ header {
 
 			.img {
 				margin-bottom: 0.6rem;
-				border: 1px solid var(--font);
+				border: 1px solid var(--main-bg-dark);
 				border-radius: 50%;
 				overflow: hidden;
 				width: 45px;
@@ -112,48 +112,37 @@ header {
 			h4 {
 				transition: all 250ms ease-in-out;
 				font-size: 1.3rem;
-				color: var(--font);
+				color: var(--main-bg-light);
 			}
 			&:hover,
 			&:active {
 				h4 {
-					color: var(--bg-dark);
+					color: var(--main-bg-dark);
 				}
 			}
 		}
 
 		.nav-links {
 			h4 {
-				width: max-content;
 				height: auto;
-				position: relative;
-				cursor: pointer;
 				transition: color 200ms ease-in;
 				font-size: 2.2rem;
 				margin: 3.6rem 0;
 				padding-bottom: 0.5rem;
 				letter-spacing: 1px;
 				font-weight: 300;
+				@include line-hover;
 
 				&:hover,
 				&:active {
-					color: var(--bg-dark);
+					color: var(--main-bg-dark);
 				}
 			}
 
 			h4.active {
-				color: var(--bg-dark);
+				color: var(--main-bg-dark);
 				&::before {
-					position: absolute;
-					content: "";
-					background: var(--bg-dark);
-					border-radius: 4px;
-					opacity: 0;
-					@include fade-in;
-					width: 100%;
-					bottom: 1px;
-					height: 3px;
-					left: 0px;
+					opacity: 1;
 					transform: unset;
 				}
 			}
@@ -179,7 +168,7 @@ header {
 
 				.icon {
 					font-size: 3.2rem;
-					color: var(--bg-dark);
+					color: var(--main-bg-dark);
 				}
 			}
 			.theme-wrapper.active {
@@ -198,7 +187,7 @@ header {
 	.cart {
 		@include centering;
 		@include icon-unactive;
-		color: var(--font);
+		color: var(--main-bg-dark);
 
 		.icon {
 			font-size: 3rem;
@@ -212,7 +201,6 @@ header {
 	}
 }
 
-.auth-page,
 .profile-page,
 .cart-page {
 	min-height: calc(100vh - 96px);

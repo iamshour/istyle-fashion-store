@@ -1,14 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;700&display=swap");
 
 :root {
 	--app-bg: #fcf9ee;
 
+	--font-light: #b2ab99;
 	--font: #000;
 
-	--bg: #f3de91;
-	--bg-dark: #d0b34b;
+	--main-bg-light: #dcbf58;
+	--main-bg-dark: #9d8329;
 
-	--grad-1: linear-gradient(90deg, #e9face 0%, #bfe5f7 100%);
+	--second-bg-light: #00dac0;
+	--second-bg-dark: #00a28a;
+
+	// --grad-1: linear-gradient(90deg, #e9face 0%, #bfe5f7 100%);
+
+	--glass: rgba(255, 255, 255, 0.7);
+
+	--google-btn-bg: #ffffff;
+	--google-btn-bg-pressed: #cac4c4;
+	--google-btn-font: rgba(0, 0, 0, 54%);
+
+	--auth-page-bg: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5dd88' fill-opacity='0.33' fill-rule='evenodd'%3E%3Cpath d='M0 0h35v35H0V0zm5 5h25v25H5V5zm5 5h15v15H10V10zm5 5h5v5h-5v-5zM40 5h25v25H40V5zm5 5h15v15H45V10zm5 5h5v5h-5v-5zM70 35H35v35h35V35zm-5 5H40v25h25V40zm-5 5H45v15h15V45zm-5 5h-5v5h5v-5zM30 40H5v25h25V40zm-5 5H10v15h15V45zm-5 5h-5v5h5v-5z'/%3E%3C/g%3E%3C/svg%3E");
+
+	// --auth-page-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23f3de91' fill-opacity='0.29'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 [data-theme="dark"] {
@@ -16,10 +30,18 @@
 
 	--font: #faf2d4;
 
-	--bg: #ebcc5e;
-	--bg-dark: #d0b34b;
+	--bg: #685305;
+	--bg-dark: #caa10c;
 
 	--grad-1: linear-gradient(90deg, #e9face 0%, #bfe5f7 100%);
+
+	--glass: rgba(0, 0, 0, 0.4);
+
+	--google-btn-bg: #4285f4;
+	--google-btn-bg-pressed: #2d79f2;
+	--google-btn-font: #ffffff;
+
+	--auth-page-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23392e05' fill-opacity='0.4'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 $breakpoint-tablet: 768px;
@@ -74,7 +96,7 @@ body {
 		background: transparent;
 	}
 	&::-webkit-scrollbar-thumb {
-		background: var(--bg-dark);
+		background: var(--bg);
 		border-radius: 16px;
 	}
 }
@@ -107,8 +129,7 @@ h1,
 h2,
 h3 {
 	font-family: "Playfair Display", serif;
-	font-weight: 500;
-	font-style: italic;
+	font-weight: 600;
 }
 
 h4,
@@ -125,25 +146,5 @@ button {
 	background: unset;
 	&:focus {
 		outline: 0;
-	}
-}
-
-label,
-textarea,
-input {
-	&:focus {
-		outline: 0;
-	}
-	font-size: 1.6rem;
-	line-height: 2.4rem;
-	&::placeholder {
-		color: var(--bg-dark);
-	}
-	&:-webkit-autofill,
-	&:-webkit-autofill:hover,
-	&:-webkit-autofill:focus,
-	&:-webkit-autofill:active {
-		transition: background-color 5000s;
-		-webkit-text-fill-color: var(--font) !important;
 	}
 }

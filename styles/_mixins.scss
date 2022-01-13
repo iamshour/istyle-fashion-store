@@ -4,14 +4,29 @@
 	align-items: center;
 }
 @mixin glass {
-	background: rgba(0, 0, 0, 0.2);
-	background: rgba(255, 255, 255, 0.5);
-	backdrop-filter: blur(32px);
+	position: relative;
+	&::before {
+		position: absolute;
+		z-index: 0;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--glass);
+		filter: blur(1px);
+		backdrop-filter: blur(32px);
+		border-radius: 8px;
+		border: 0.1px solid rgba(0, 0, 0, 0.1);
+	}
 }
 
 @mixin pressed {
 	cursor: pointer;
 	transition: transform 250ms ease-in-out;
+
 	&:hover,
 	&:active {
 		transform: scale(0.99);
@@ -53,5 +68,34 @@
 
 @mixin icon-active {
 	box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.4);
-	color: var(--bg-dark);
+	color: var(--main-bg-light);
+}
+
+@mixin line-hover {
+	position: relative;
+	cursor: pointer;
+	width: max-content;
+
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: -6px;
+		right: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: var(--main-bg-dark);
+		border-radius: 12px;
+		opacity: 0;
+		transform: translateX(-20px);
+		transition: all 200ms ease-in;
+	}
+
+	&:hover,
+	&:active {
+		&::before {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+	}
 }
