@@ -7,7 +7,7 @@ import { AiOutlineUser } from "react-icons/ai"
 import { BsShieldLockFill } from "react-icons/bs"
 import { VscEye, VscEyeClosed } from "react-icons/vsc"
 
-const auth = () => {
+const Auth = () => {
 	const [showPass, setShowPass] = useState(false)
 	const [signIn, setSignIn] = useState(true)
 
@@ -75,7 +75,7 @@ const auth = () => {
 						)}
 					</div>
 					{signIn && (
-						<Link href={"/forgot"}>
+						<Link href={"/forgot"} passHref>
 							<h2 className='forgot-pass'>Forgot your password?</h2>
 						</Link>
 					)}
@@ -95,4 +95,4 @@ const auth = () => {
 	)
 }
 
-export default auth
+export default Auth
