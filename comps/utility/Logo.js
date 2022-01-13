@@ -1,4 +1,18 @@
-const Logo = ({ mainCol, secondCol }) => {
+import { useEffect, useState } from "react"
+
+const Logo = () => {
+	const [customDoc, setCustomDoc] = useState(null)
+
+	useEffect(() => {
+		setCustomDoc(document)
+	}, [])
+
+	const mainCol =
+		customDoc?.documentElement.getAttribute("data-theme") === "light" ? "#000" : "#F3DE91"
+
+	const secondCol =
+		customDoc?.documentElement.getAttribute("data-theme") === "light" ? "#F3DE91" : "#000"
+
 	return (
 		<svg
 			fill='none'

@@ -119,10 +119,7 @@ const Header = () => {
 					</button>
 					<Link href='/'>
 						<a className='logo' onClick={() => setNavActive(false)}>
-							<Logo
-								mainCol={theme === "light" || theme === null ? "#000" : "#F3DE91"}
-								secondCol={theme === "light" || theme === null ? "#F3DE91" : "#000"}
-							/>
+							<Logo />
 						</a>
 					</Link>
 				</div>
