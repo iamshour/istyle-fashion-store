@@ -1,17 +1,24 @@
-import AuthSvg from "@comps/utility/AuthSvg"
-import GoogleLogo from "@comps/utility/GoogleLogo"
-import Image from "next/image"
+import { useState, useContext } from "react"
 import Link from "next/link"
-import { useState } from "react"
+import { DataContext } from "@context/GlobalContext"
+import { NOTIFY, AUTH } from "@context/Actions"
+import { postData } from "@utility/axiosCalls"
+import { validate } from "@utility/validation"
+//COMPS
+import GoogleLogo from "@comps/auth/GoogleLogo"
+import AuthSvg from "@comps/auth/AuthSvg"
+//ICONS
 import { AiOutlineUser } from "react-icons/ai"
 import { BsShieldLockFill } from "react-icons/bs"
 import { VscEye, VscEyeClosed } from "react-icons/vsc"
+import { HiOutlineMail } from "react-icons/hi"
 
 const Auth = () => {
 	const [showPass, setShowPass] = useState(false)
 	const [signIn, setSignIn] = useState(true)
+	const [state, dispatch] = useContext(DataContext)
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const formData = {}
 
@@ -20,7 +27,38 @@ const Auth = () => {
 			formData[field.name] = field.value
 		})
 		//using Array.from bc e.currentTarget.elements is immutable
-		console.log(formData)
+
+		const errorMessage = validate(
+			formData.name,
+			formData.email,
+			formData.password,
+			formData.confirmPassword
+		)
+
+		if (errorMessage)
+			return dispatch({
+				type: NOTIFY,
+				payload: { error: errorMessage },
+			})
+
+		try {
+			dispatch({
+				type: NOTIFY,
+				payload: { loading: true },
+			})
+			const { data } = await postData("auth/register", formData)
+			dispatch({
+				type: NOTIFY,
+				payload: { success: data.msg },
+			})
+		} catch (err) {
+			dispatch({
+				type: NOTIFY,
+				payload: {
+					error: err?.response?.data?.msg,
+				},
+			})
+		}
 	}
 
 	return (
@@ -39,13 +77,13 @@ const Auth = () => {
 					</div>
 					<div className='input-bars'>
 						{!signIn && (
-							<div className='input-bar'>
-								<input type='text' placeholder='First name' name='firstName' />
-								<input type='text' placeholder='Last name' name='lastName' />
+							<div className='input-bar-icon'>
+								<AiOutlineUser className='icon' />
+								<input type='text' placeholder='Enter your full name' name='name' />
 							</div>
 						)}
 						<div className='input-bar-icon'>
-							<AiOutlineUser className='icon' />
+							<HiOutlineMail className='icon' />
 							<input type='text' placeholder='Enter your email' name='email' />
 						</div>
 						<div className='input-bar-icon pass-input'>

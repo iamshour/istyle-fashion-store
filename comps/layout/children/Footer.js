@@ -1,4 +1,4 @@
-import Logo from "@comps/utility/Logo"
+import Logo from "@comps/layout/children/Logo"
 import Link from "next/link"
 import { FaFacebook, FaInstagram } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"

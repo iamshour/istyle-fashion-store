@@ -1,21 +1,12 @@
-import Meta from "@comps/utility/Meta"
+import Head from "next/head"
 
 export default function Home() {
 	return (
 		<>
-			<Meta title={"iStyle Fashion Store | Home"} />
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
-			<div className='home-page'>HOMEPAGE</div>
+			<Head>
+				<title>iStyle Fashion Store | Home</title>
+			</Head>
+			<div className='home-page'></div>
 		</>
 	)
 }

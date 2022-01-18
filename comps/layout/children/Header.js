@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import Logo from "@comps/utility/Logo"
+import Logo from "@comps/layout/children/Logo"
 //ICONS
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { BsFillMoonFill } from "react-icons/bs"

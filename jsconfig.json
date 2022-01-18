@@ -5,7 +5,8 @@
 			"@comps/*": ["comps/*"],
 			"@styles/*": ["styles/*"],
 			"@context/*": ["context/*"],
-			"@server/*": ["server/*"],
+			"@utility/*": ["utility/*"],
+			"@models/*": ["models/*"],
 			"@pages/*": ["pages/*"]
 		}
 	}
