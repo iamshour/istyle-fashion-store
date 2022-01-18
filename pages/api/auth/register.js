@@ -1,6 +1,4 @@
-import mongoose from "mongoose"
 import bcrypt from "bcrypt"
-// import dbConnect from "@utility/connectDB"
 import connectDB from "@utility/connectDB"
 import { validate } from "@utility/validation"
 import User from "@models/User"
@@ -8,52 +6,37 @@ import User from "@models/User"
 connectDB()
 
 export default async (req, res) => {
-	const { method } = req
+	if (req.method === "POST") {
+		try {
+			const { name, email, password, confirmPassword } = req.body
 
-	switch (method) {
-		case "POST":
-			await register(req, res)
+			const invalidMessage = validate(name, email, password, confirmPassword)
 
-			break
+			if (invalidMessage)
+				return res.status(500).json({
+					msg: invalidMessage,
+				})
 
-		case "GET":
-			break
+			const exists = await User.findOne({ email })
 
-		default:
-			break
-	}
-}
+			if (exists)
+				return res.status(400).json({
+					msg: "Authentication failed. Try using another email.",
+				})
 
-const register = async (req, res) => {
-	try {
-		const { name, email, password, confirmPassword } = req.body
+			const hashPass = await bcrypt.hash(password, 12)
 
-		const invalidMessage = validate(name, email, password, confirmPassword)
+			const user = new User({ name, email, password: hashPass })
 
-		if (invalidMessage)
-			return res.status(500).json({
-				msg: invalidMessage,
+			await user.save()
+
+			res.status(201).json({
+				msg: "Registration successfull!",
 			})
-
-		const exists = await User.findOne({ email })
-
-		if (exists)
-			return res.status(400).json({
-				msg: "Authentication failed. Try using another email.",
+		} catch (err) {
+			res.status(500).json({
+				msg: err?.length > 0 ? err : "some error occured, please try again.",
 			})
-
-		const hashPass = await bcrypt.hash(password, 12)
-
-		const user = new User({ name, email, password: hashPass })
-
-		await user.save()
-
-		res.status(201).json({
-			msg: "Registration successfull!",
-		})
-	} catch (err) {
-		res.status(500).json({
-			msg: err?.length > 0 ? err : "some error occured, please try again.",
-		})
+		}
 	}
 }
