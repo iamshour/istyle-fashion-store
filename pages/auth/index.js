@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import Link from "next/link"
 import { DataContext } from "@context/GlobalContext"
-import { NOTIFY, AUTH } from "@context/Actions"
+import { NOTIFY } from "@context/Actions"
 import { postData } from "@utility/axiosCalls"
 import { validate } from "@utility/validation"
 //COMPS
