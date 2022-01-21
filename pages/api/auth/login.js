@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt"
-import connectDB from "@utility/connectDB"
+import clientPromise from "@utility/mongodb"
 import { validate } from "@utility/validation"
 import User from "@models/User"
 
-connectDB()
+clientPromise()
 
 export default async (req, res) => {
 	const { method } = req

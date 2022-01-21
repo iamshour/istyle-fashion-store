@@ -6,17 +6,15 @@ import { postData } from "@utility/axiosCalls"
 import { validate } from "@utility/validation"
 import { getSession, getProviders } from "next-auth/react"
 //COMPS
-import GoogleLogo from "@comps/auth/GoogleLogo"
 import AuthSvg from "@comps/auth/AuthSvg"
+import AuthBtn from "@comps/auth/AuthBtn"
 //ICONS
 import { AiOutlineUser } from "react-icons/ai"
 import { BsShieldLockFill } from "react-icons/bs"
 import { VscEye, VscEyeClosed } from "react-icons/vsc"
 import { HiOutlineMail } from "react-icons/hi"
-import AuthBtn from "@comps/auth/AuthBtn"
 
 export default function Auth({ session, providers }) {
-	console.log({ session, providers })
 	const [showPass, setShowPass] = useState(false)
 	const [showSignIn, setShowSignIn] = useState(true)
 	const [state, dispatch] = useContext(DataContext)
@@ -127,7 +125,7 @@ export default function Auth({ session, providers }) {
 					</form>
 					<div className='social-auth-btns'>
 						<h4>OR</h4>
-						{Object.values(providers)?.map((provider) => (
+						{Object?.values(providers)?.map((provider) => (
 							<AuthBtn key={provider?.name} provider={provider} showSignIn={showSignIn} />
 						))}
 					</div>
@@ -138,9 +136,18 @@ export default function Auth({ session, providers }) {
 }
 
 export async function getServerSideProps(context) {
+	const session = await getSession(context)
+	if (session) {
+		return {
+			redirect: {
+				destination: "/profile",
+				permanent: false,
+			},
+		}
+	}
 	return {
 		props: {
-			session: await getSession(context),
+			session,
 			providers: await getProviders(),
 		},
 	}

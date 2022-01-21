@@ -1,19 +1,40 @@
 import Router from "next/router"
 import { useEffect } from "react"
 import { BiLogOut, BiLogIn } from "react-icons/bi"
+import { getSession, signOut } from "next-auth/react"
 
-const Profile = () => {
-	let user = !null
-
+export default function Profile({ session }) {
 	useEffect(() => {
-		!user && Router.push("/")
-	}, [user])
+		if (!session) return Router.push("/auth")
+	}, [session])
 
 	return (
 		<div>
-			<div className='cont'>PROFILE_PAGE PROFILE_PAGE</div>
+			<div className='cont'>
+				<img src={session?.user?.image} style={{ width: "200px", height: "200px" }} />
+				<h1>{session?.user?.name}</h1>
+				<button className='btn btn-large' onClick={() => signOut()}>
+					SIGN OUT
+				</button>
+			</div>
 		</div>
 	)
 }
 
-export default Profile
+export async function getServerSideProps(context) {
+	const session = await getSession(context)
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/auth",
+				permanent: false,
+			},
+		}
+	}
+	return {
+		props: {
+			session,
+		},
+	}
+}
