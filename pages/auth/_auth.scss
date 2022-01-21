@@ -115,95 +115,98 @@
 			}
 		}
 
-		form {
+		.form-wrapper {
 			padding: 3rem;
 			border-radius: 16px;
 			@include glass;
 			max-width: 32rem;
-			display: flex;
-			flex-direction: column;
 
-			.input-bars,
-			.forgot-pass,
-			.btns,
-			.top {
+			form,
+			.social-auth-btns {
 				position: relative;
 				z-index: inherit;
 			}
 
-			.top {
+			form {
 				width: 100%;
+				height: auto;
 				display: flex;
 				flex-direction: column;
-				align-items: flex-start;
-				margin-bottom: 4rem;
+				align-items: center;
 
-				h4 {
-					font-size: 3.2rem;
-					color: var(--main-bg-light);
-					font-weight: 400;
-					margin-bottom: 1.6rem;
-				}
-
-				.top-action {
+				.top {
 					width: 100%;
-					@include centering;
-					justify-content: flex-start;
-					h2 {
-						font-size: 1.2rem;
-						color: var(--font);
-						margin-right: 0.8rem;
-					}
-					button {
-						@include line-hover;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					margin-bottom: 4rem;
 
-						p {
+					h4 {
+						font-size: 3.2rem;
+						color: var(--main-bg-light);
+						font-weight: 400;
+						margin-bottom: 1.6rem;
+					}
+
+					.top-action {
+						width: 100%;
+						@include centering;
+						justify-content: flex-start;
+						h2 {
 							font-size: 1.2rem;
-							font-weight: 700;
-							color: var(--main-bg-dark);
+							color: var(--font);
+							margin-right: 0.8rem;
+						}
+						button {
+							@include line-hover;
+
+							p {
+								font-size: 1.2rem;
+								font-weight: 700;
+								color: var(--main-bg-dark);
+							}
 						}
 					}
 				}
-			}
 
-			.input-bars {
-				margin-bottom: 2rem;
+				.input-bars {
+					margin-bottom: 1.6rem;
 
-				.input-bar-icon:nth-of-type(1) {
-					margin-bottom: 2rem;
-				}
+					.input-bar-icon:nth-of-type(1) {
+						margin-bottom: 1.2rem;
+					}
 
-				.pass-input {
-					padding-right: 4rem;
-					position: relative;
+					.pass-input {
+						padding-right: 4rem;
+						position: relative;
 
-					.eye {
-						cursor: pointer;
-						margin: 0;
-						font-size: 2.2rem;
-						position: absolute;
-						right: 0;
-						top: 50%;
-						bottom: 50%;
-						transform: translate(-50%, -50%);
+						.eye {
+							cursor: pointer;
+							margin: 0;
+							font-size: 2.2rem;
+							position: absolute;
+							right: 0;
+							top: 50%;
+							bottom: 50%;
+							transform: translate(-50%, -50%);
 
-						&:hover,
-						&:active {
-							transform: translate(-50%, -50%) scale(1.02);
+							&:hover,
+							&:active {
+								transform: translate(-50%, -50%) scale(1.02);
+							}
 						}
 					}
 				}
-			}
 
-			.forgot-pass {
-				color: var(--main-bg-dark);
-				margin-bottom: 5rem;
-				font-size: 1.3rem;
-				@include line-hover;
-				align-self: flex-end;
+				.forgot-pass {
+					color: var(--main-bg-dark);
+					margin-bottom: 4rem;
+					font-size: 1.3rem;
+					@include line-hover;
+					align-self: flex-end;
+				}
 			}
-
-			.btns {
+			.social-auth-btns {
 				@include centering;
 				flex-direction: column;
 
@@ -211,68 +214,47 @@
 					font-size: 1.2rem;
 					margin: 1.2rem 0;
 					color: var(--main-bg-light);
-				}
-
-				.btn,
-				.btn-google {
-					p {
-						font-size: 14px;
-					}
-				}
-
-				.btn {
-					width: 219.32px;
-					height: 46px;
-				}
-
-				.btn-google {
-					cursor: pointer;
-					display: flex;
-					align-items: center;
-					height: 46px;
-					padding-right: 32px;
 					position: relative;
-					@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-					font-family: "Roboto", sans-serif;
-					background: var(--google-btn-bg);
-					color: var(--google-btn-font);
-					white-space: nowrap;
-					transition: all 250ms ease-in-out;
-					box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-
-					svg {
-						background: #fff;
-						width: 46px;
-						margin-right: 16px;
+					overflow-x: visible;
+					&::before,
+					&::after {
+						content: "";
+						position: absolute;
+						width: 120px;
+						height: 1px;
+						border-radius: 20px;
+						top: 50%;
+						bottom: 50%;
+						background: var(--main-bg-light);
 					}
-					&:hover,
-					&:active,
-					&:focus {
-						background: var(--google-btn-bg-pressed);
-						box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+					&::before {
+						left: 24px;
+					}
+					&::after {
+						right: 24px;
 					}
 				}
 			}
-		}
 
-		.signup-form {
-			.top {
-				margin-bottom: 4rem;
+			.signup-form {
+				.top {
+					margin-bottom: 4rem;
 
-				h4 {
-					font-size: 2.6rem;
-					margin-bottom: 1.4rem;
+					h4 {
+						font-size: 2.6rem;
+						margin-bottom: 1.4rem;
+					}
 				}
-			}
 
-			.input-bars {
-				margin-bottom: 4rem;
+				.input-bars {
+					margin-bottom: 4rem;
 
-				.input-bar-icon {
-					&:nth-of-type(1),
-					&:nth-of-type(2),
-					&:nth-of-type(3) {
-						margin-bottom: 2rem;
+					.input-bar-icon {
+						&:nth-of-type(1),
+						&:nth-of-type(2),
+						&:nth-of-type(3) {
+							margin-bottom: 2rem;
+						}
 					}
 				}
 			}

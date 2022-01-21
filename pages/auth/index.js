@@ -4,6 +4,7 @@ import { DataContext } from "@context/GlobalContext"
 import { NOTIFY } from "@context/Actions"
 import { postData } from "@utility/axiosCalls"
 import { validate } from "@utility/validation"
+import { getSession, getProviders } from "next-auth/react"
 //COMPS
 import GoogleLogo from "@comps/auth/GoogleLogo"
 import AuthSvg from "@comps/auth/AuthSvg"
@@ -12,10 +13,12 @@ import { AiOutlineUser } from "react-icons/ai"
 import { BsShieldLockFill } from "react-icons/bs"
 import { VscEye, VscEyeClosed } from "react-icons/vsc"
 import { HiOutlineMail } from "react-icons/hi"
+import AuthBtn from "@comps/auth/AuthBtn"
 
-const Auth = () => {
+export default function Auth({ session, providers }) {
+	console.log({ session, providers })
 	const [showPass, setShowPass] = useState(false)
-	const [signIn, setSignIn] = useState(true)
+	const [showSignIn, setShowSignIn] = useState(true)
 	const [state, dispatch] = useContext(DataContext)
 
 	const handleSubmit = async (e) => {
@@ -65,72 +68,80 @@ const Auth = () => {
 		<div className='auth-page'>
 			<div className='wrapper'>
 				<AuthSvg />
-				<form onSubmit={handleSubmit} className={!signIn ? "signup-form" : ""}>
-					<div className='top'>
-						<h4>{signIn ? "Sign In" : "Create an account"}</h4>
-						<div className='top-action'>
-							<h2>{signIn ? "Don't" : "Already"} have an account?</h2>
-							<button onClick={() => setSignIn((prev) => !prev)} type='button'>
-								<p>{signIn ? "Sign up" : "Sign in"}</p>
-							</button>
-						</div>
-					</div>
-					<div className='input-bars'>
-						{!signIn && (
-							<div className='input-bar-icon'>
-								<AiOutlineUser className='icon' />
-								<input type='text' placeholder='Enter your full name' name='name' />
+				<div className='form-wrapper'>
+					<form onSubmit={handleSubmit} className={!showSignIn ? "signup-form" : ""}>
+						<div className='top'>
+							<h4>{showSignIn ? "Sign In" : "Create an account"}</h4>
+							<div className='top-action'>
+								<h2>{showSignIn ? "Don't" : "Already"} have an account?</h2>
+								<button onClick={() => setShowSignIn((prev) => !prev)} type='button'>
+									<p>{showSignIn ? "Sign up" : "Sign in"}</p>
+								</button>
 							</div>
-						)}
-						<div className='input-bar-icon'>
-							<HiOutlineMail className='icon' />
-							<input type='text' placeholder='Enter your email' name='email' />
 						</div>
-						<div className='input-bar-icon pass-input'>
-							<BsShieldLockFill className='icon' />
-							<input
-								type={showPass ? "text" : "password"}
-								placeholder='Enter your password'
-								name='password'
-							/>
-							<button onClick={() => setShowPass((prev) => !prev)} type='button'>
-								{showPass ? (
-									<VscEyeClosed className='icon eye' />
-								) : (
-									<VscEye className='icon eye' />
-								)}
-							</button>
-						</div>
-						{!signIn && (
+						<div className='input-bars'>
+							{!showSignIn && (
+								<div className='input-bar-icon'>
+									<AiOutlineUser className='icon' />
+									<input type='text' placeholder='Enter your full name' name='name' />
+								</div>
+							)}
 							<div className='input-bar-icon'>
+								<HiOutlineMail className='icon' />
+								<input type='text' placeholder='Enter your email' name='email' />
+							</div>
+							<div className='input-bar-icon pass-input'>
 								<BsShieldLockFill className='icon' />
 								<input
 									type={showPass ? "text" : "password"}
-									placeholder='Confirm your password'
-									name='confirmPassword'
+									placeholder='Enter your password'
+									name='password'
 								/>
+								<button onClick={() => setShowPass((prev) => !prev)} type='button'>
+									{showPass ? (
+										<VscEyeClosed className='icon eye' />
+									) : (
+										<VscEye className='icon eye' />
+									)}
+								</button>
 							</div>
+							{!showSignIn && (
+								<div className='input-bar-icon'>
+									<BsShieldLockFill className='icon' />
+									<input
+										type={showPass ? "text" : "password"}
+										placeholder='Confirm your password'
+										name='confirmPassword'
+									/>
+								</div>
+							)}
+						</div>
+						{showSignIn && (
+							<Link href={"/forgot"} passHref>
+								<h2 className='forgot-pass'>Forgot your password?</h2>
+							</Link>
 						)}
-					</div>
-					{signIn && (
-						<Link href={"/forgot"} passHref>
-							<h2 className='forgot-pass'>Forgot your password?</h2>
-						</Link>
-					)}
-					<div className='btns'>
-						<button type='submit' className='btn'>
-							<p>Sign {signIn ? "in" : "up"}</p>
+						<button type='submit' className='btn email-btn'>
+							<p>Sign {showSignIn ? "in" : "up"}</p>
 						</button>
+					</form>
+					<div className='social-auth-btns'>
 						<h4>OR</h4>
-						<button type='submit' className='btn-google'>
-							<GoogleLogo />
-							<p>Sign {signIn ? "in" : "up"} with Google</p>
-						</button>
+						{Object.values(providers)?.map((provider) => (
+							<AuthBtn key={provider?.name} provider={provider} showSignIn={showSignIn} />
+						))}
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	)
 }
 
-export default Auth
+export async function getServerSideProps(context) {
+	return {
+		props: {
+			session: await getSession(context),
+			providers: await getProviders(),
+		},
+	}
+}

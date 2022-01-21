@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.btn {
+	@include centering;
+	cursor: pointer;
+	color: var(--font);
+	background: var(--main-bg-light);
+	transition: all 200ms ease-in-out;
+	box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.4);
+	p,
+	.icon {
+		font-size: inherit;
+		color: inherit;
+	}
+
+	&:hover,
+	&:active {
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+		background: var(--main-bg-dark);
+		color: var(--app-bg);
+	}
+}
+
+.btn-small {
+	padding: 0.5rem 1rem;
+	font-size: 1.4rem;
+	border-radius: 4px;
+	.icon {
+		margin-left: 0.4rem;
+	}
+}
+.btn-medium {
+	padding: 0.9rem 0;
+	width: 100%;
+	font-size: 1.8rem;
+	border-radius: 4px;
+	.icon {
+		margin-left: 0.6em;
+	}
+}
+
+.auth-btn {
+	cursor: pointer;
+	width: 219.32px;
+	height: 46px;
+	font-size: 14px;
+	font-family: "Roboto", sans-serif;
+	display: flex;
+	align-items: center;
+	color: var(--font);
+	transition: all 250ms ease-in-out;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+	&:hover,
+	&:active,
+	&:focus {
+		box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+	}
+}
+
+.google-btn {
+	padding-right: 32px;
+	position: relative;
+	background: var(--google-btn-bg);
+	white-space: nowrap;
+
+	svg {
+		background: inherit;
+		width: 46px;
+		margin-right: 16px;
+	}
+	&:hover,
+	&:active,
+	&:focus {
+		background: var(--google-btn-bg-pressed);
+	}
+}
+.facebook-btn {
+	background: #4267b2;
+	color: rgb(250, 250, 250);
+	margin-bottom: 1.2rem;
+	p {
+		color: #fff;
+	}
+	.icon {
+		font-size: 16px;
+		margin: 0 32px 0 16px;
+	}
+
+	&:hover,
+	&:active {
+		background: #2b59b6;
+	}
+}
+.email-btn {
+	width: 219.32px;
+	height: 46px;
+	font-size: 14px;
+}

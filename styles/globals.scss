@@ -1,5 +1,6 @@
 @import "./resets";
 @import "./mixins";
+@import "./buttons";
 @import "@pages/404/404";
 @import "@pages/auth/auth";
 @import "@pages/cart/cart";
@@ -75,42 +76,4 @@ textarea {
 	border-radius: 16px;
 	padding: 1rem;
 	color: var(--font);
-}
-
-//BUTTONS
-.btn {
-	@include centering;
-	cursor: pointer;
-	color: var(--font);
-	background: var(--main-bg-light);
-	transition: all 200ms ease-in-out;
-	p,
-	.icon {
-		font-size: inherit;
-		color: inherit;
-	}
-
-	&:hover,
-	&:active {
-		background: var(--main-bg-dark);
-		color: var(--app-bg);
-	}
-}
-
-.btn-small {
-	padding: 0.5rem 1rem;
-	font-size: 1.4rem;
-	border-radius: 4px;
-	.icon {
-		margin-left: 0.4rem;
-	}
-}
-.btn-medium {
-	padding: 0.9rem 0;
-	width: 100%;
-	font-size: 1.8rem;
-	border-radius: 4px;
-	.icon {
-		margin-left: 0.6em;
-	}
 }
