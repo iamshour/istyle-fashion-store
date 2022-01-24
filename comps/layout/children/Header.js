@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import Logo from "@comps/layout/children/Logo"
+import { useSession } from "next-auth/react"
 //ICONS
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { BsFillMoonFill } from "react-icons/bs"
@@ -13,7 +14,8 @@ const Header = () => {
 	const [navActive, setNavActive] = useState(false)
 	const [customDoc, setCustomDoc] = useState(null)
 	const [theme, setTheme] = useState("light")
-	const user = null
+	
+	const user = useSession()?.data?.user
 
 	useEffect(() => {
 		setCustomDoc(document)
@@ -69,8 +71,8 @@ const Header = () => {
 		link: user ? "/profile" : "/auth",
 		title: user ? user?.name : "Sign in",
 		avatar:
-			user && user?.avatar
-				? user?.avatar
+			user && user?.image
+				? user?.image
 				: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png",
 	}
 

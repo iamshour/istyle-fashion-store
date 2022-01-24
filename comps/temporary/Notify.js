@@ -3,7 +3,7 @@ import { DataContext } from "@context/GlobalContext"
 import Loading from "./Loading"
 import { NOTIFY } from "@context/Actions"
 
-const Notify = () => {
+const Notify = ({ urlLoading }) => {
 	const [{ notify }, dispatch] = useContext(DataContext)
 
 	if (notify?.error || notify?.success)
@@ -16,7 +16,7 @@ const Notify = () => {
 
 	return (
 		<>
-			{notify?.loading ? (
+			{notify?.loading || urlLoading ? (
 				<Loading />
 			) : notify?.error || notify?.success ? (
 				<div

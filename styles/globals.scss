@@ -34,10 +34,10 @@ input {
 
 .input-bar {
 	input {
-		padding: 0.6rem;
+		padding: 1rem;
 		background: transparent;
-		border: 0;
-		border-bottom: 1px solid var(--main-bg-light);
+		border: 1px solid var(--main-bg-light);
+		border-radius: 4px;
 
 		&:focus {
 			border-color: var(--main-bg-dark);
@@ -46,12 +46,13 @@ input {
 }
 
 .input-bar-icon {
-	padding: 0.6rem;
+	padding: 1rem;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	background: transparent;
-	border-bottom: 1px solid var(--main-bg-light);
+	border: 1px solid var(--main-bg-light);
+	border-radius: 4px;
 
 	.icon {
 		color: var(--main-bg-light);

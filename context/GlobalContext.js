@@ -5,7 +5,6 @@ export const DataContext = createContext()
 
 export const ContextProvider = ({ children }) => {
 	const initialState = {
-		auth: {},
 		notify: {},
 	}
 

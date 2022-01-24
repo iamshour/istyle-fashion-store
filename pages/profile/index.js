@@ -1,12 +1,24 @@
-import Router from "next/router"
-import { useEffect } from "react"
+import { useState } from "react"
 import { BiLogOut, BiLogIn } from "react-icons/bi"
 import { getSession, signOut } from "next-auth/react"
+import { getData, postData } from "@utility/axiosCalls"
 
-export default function Profile({ session }) {
-	useEffect(() => {
-		if (!session) return Router.push("/auth")
-	}, [session])
+export default function Profile({ session, result }) {
+	const [formData, setFormData] = useState({
+		title: "",
+		description: "",
+	})
+
+	const changeHandler = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+	}
+
+	const handler = async (e) => {
+		e.preventDefault()
+
+		const { data } = await postData("example", formData)
+		console.log(data)
+	}
 
 	return (
 		<div>
@@ -16,6 +28,13 @@ export default function Profile({ session }) {
 				<button className='btn btn-large' onClick={() => signOut()}>
 					SIGN OUT
 				</button>
+				<form onSubmit={handler}>
+					<input type='text' onChange={changeHandler} name='title' />
+					<input type='text' onChange={changeHandler} name='description' />
+					<button type='submit' className='btn btn-large'>
+						SUBMIT
+					</button>
+				</form>
 			</div>
 		</div>
 	)
@@ -23,6 +42,7 @@ export default function Profile({ session }) {
 
 export async function getServerSideProps(context) {
 	const session = await getSession(context)
+	const { data } = await getData("example")
 
 	if (!session) {
 		return {
@@ -35,6 +55,7 @@ export async function getServerSideProps(context) {
 	return {
 		props: {
 			session,
+			result: data,
 		},
 	}
 }
