@@ -2,13 +2,14 @@ import { useState, useContext, useRef } from "react"
 import { DataContext } from "@context/GlobalContext"
 import { NOTIFY } from "@context/Actions"
 import { emailValidate } from "@utility/validation"
-import { getSession, getProviders, signIn, getCsrfToken } from "next-auth/react"
+import { getSession, getProviders, signIn } from "next-auth/react"
 //COMPS
 import AuthSvg from "@comps/auth/AuthSvg"
 import AuthBtn from "@comps/auth/AuthBtn"
 //ICONS
 import { HiOutlineMail } from "react-icons/hi"
 import Head from "next/head"
+import axios from "axios"
 
 export default function Auth({ providers }) {
 	const [showSignIn, setShowSignIn] = useState(true)
@@ -32,19 +33,53 @@ export default function Auth({ providers }) {
 				payload: { error: errorMessage },
 			})
 
-		const res = await signIn(provider.id, { redirect: false, email })
+		if (showSignIn) {
+			try {
+				const { status } = await axios.post("api/finduser/onsignin", { email })
+				if (status === 201) {
+					await signIn(provider.id, { redirect: false, email })
+					dispatch({
+						type: NOTIFY,
+						payload: {
+							loading: false,
+							success: "Check your email inbox for verification!",
+						},
+					})
+				}
+			} catch (error) {
+				return dispatch({
+					type: NOTIFY,
+					payload: {
+						loading: false,
+						error: error?.response?.data?.msg || "An error occured. please try again.",
+					},
+				})
+			}
+		} else {
+			try {
+				const { status } = await axios.post("api/finduser/onsignup", { email })
+				if (status === 201) {
+					await signIn(provider.id, { redirect: false, email })
+					dispatch({
+						type: NOTIFY,
+						payload: {
+							loading: false,
+							success: "Check your email inbox for verification!",
+						},
+					})
+				}
+			} catch (error) {
+				return dispatch({
+					type: NOTIFY,
+					payload: {
+						loading: false,
+						error: error?.response?.data?.msg || "An error occured. please try again.",
+					},
+				})
+			}
+		}
+
 		emailInput.current.value = ""
-
-		if (res.error)
-			return dispatch({
-				type: NOTIFY,
-				payload: { loading: false, error: res.error },
-			})
-
-		dispatch({
-			type: NOTIFY,
-			payload: { loading: false, success: "Check your email inbox for verification!" },
-		})
 	}
 
 	return (
