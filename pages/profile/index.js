@@ -1,11 +1,18 @@
 import { BiLogOut, BiLogIn } from "react-icons/bi"
 import { getSession, signOut } from "next-auth/react"
+import Image from "next/image"
 
-export default function Profile({ session, result }) {
+export default function Profile({ session }) {
 	return (
 		<div>
 			<div className='cont'>
-				<img src={session?.user?.image} style={{ width: "200px", height: "200px" }} />
+				<Image
+					src={session?.user?.image}
+					width={100}
+					height={100}
+					alt='user profile image, or avi'
+					objectFit='cover'
+				/>
 				<h1>{session?.user?.name}</h1>
 				<button className='btn btn-large' onClick={() => signOut()}>
 					SIGN OUT

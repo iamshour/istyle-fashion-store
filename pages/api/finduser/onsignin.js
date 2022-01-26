@@ -3,7 +3,7 @@ import User from "@models/User"
 
 connectDB()
 
-export default async (req, res) => {
+const handler = async (req, res) => {
 	if (req.method === "POST") {
 		try {
 			const email = req.body.email
@@ -24,3 +24,5 @@ export default async (req, res) => {
 		}
 	}
 }
+
+export default handler

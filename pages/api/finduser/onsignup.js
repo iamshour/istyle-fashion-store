@@ -3,7 +3,7 @@ import User from "@models/User"
 
 connectDB()
 
-export default async (req, res) => {
+const handler = async (req, res) => {
 	if (req.method === "POST") {
 		const email = req.body.email
 		// const existingUser = await mongoose.models.users.findOne({ email })
@@ -18,3 +18,5 @@ export default async (req, res) => {
 		return res.status(201).json()
 	}
 }
+
+export default handler

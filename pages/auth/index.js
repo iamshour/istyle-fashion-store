@@ -101,7 +101,7 @@ export default function Auth({ providers }) {
 								Continue
 							</button>
 							<h5>
-								We'll email you a magic code for a password-free{" "}
+								We&apos;ll email you a magic code for a password-free
 								{showSignIn ? "Sign in" : "Sign up"}!
 							</h5>
 						</form>
