@@ -11,8 +11,6 @@ const userSchema = new mongoose.Schema(
 		},
 		image: {
 			type: String,
-			default:
-				"https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png",
 		},
 		emailVerified: {
 			type: String,

@@ -25,3 +25,11 @@
         </div>
     </Modal>
 )} -->
+
+// const [formData, setFormData] = useState({
+// title: "",
+// description: "",
+// })
+// const changeHandler = (e) => {
+// setFormData({ ...formData, [e.target.name]: e.target.value })
+// }

@@ -59,6 +59,13 @@ export default NextAuth({
 	callbacks: {
 		async session({ session, token }) {
 			session.userId = token.sub
+			if (session.user.name === undefined) {
+				session.user.name = session.user.email.match(/^.*(?=@)/g)[0]
+			}
+			if (session.user.image === undefined) {
+				session.user.image =
+					"https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png"
+			}
 			return Promise.resolve(session)
 		},
 	},

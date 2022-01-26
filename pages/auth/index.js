@@ -30,53 +30,39 @@ export default function Auth({ providers }) {
 		if (errorMessage)
 			return dispatch({
 				type: NOTIFY,
-				payload: { error: errorMessage },
+				payload: { loading: false, error: errorMessage },
 			})
 
-		if (showSignIn) {
-			try {
-				const { status } = await axios.post("api/finduser/onsignin", { email })
-				if (status === 201) {
-					await signIn(provider.id, { redirect: false, email })
-					dispatch({
-						type: NOTIFY,
-						payload: {
-							loading: false,
-							success: "Check your email inbox for verification!",
-						},
-					})
-				}
-			} catch (error) {
-				return dispatch({
+		try {
+			if (showSignIn) {
+				await axios.post("api/finduser/onsignin", { email })
+				await signIn(provider.id, { redirect: false, email })
+				dispatch({
 					type: NOTIFY,
 					payload: {
 						loading: false,
-						error: error?.response?.data?.msg || "An error occured. please try again.",
+						success: "Check your email inbox for verification!",
 					},
 				})
-			}
-		} else {
-			try {
-				const { status } = await axios.post("api/finduser/onsignup", { email })
-				if (status === 201) {
-					await signIn(provider.id, { redirect: false, email })
-					dispatch({
-						type: NOTIFY,
-						payload: {
-							loading: false,
-							success: "Check your email inbox for verification!",
-						},
-					})
-				}
-			} catch (error) {
-				return dispatch({
+			} else {
+				await axios.post("api/finduser/onsignup", { email })
+				await signIn(provider.id, { redirect: false, email })
+				dispatch({
 					type: NOTIFY,
 					payload: {
 						loading: false,
-						error: error?.response?.data?.msg || "An error occured. please try again.",
+						success: "Check your email inbox for verification!",
 					},
 				})
 			}
+		} catch (error) {
+			return dispatch({
+				type: NOTIFY,
+				payload: {
+					loading: false,
+					error: error?.response?.data?.msg || "An error occured. please try again.",
+				},
+			})
 		}
 
 		emailInput.current.value = ""
