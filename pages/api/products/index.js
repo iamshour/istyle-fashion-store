@@ -1,31 +1,28 @@
-// import mongoose from 'mongoose'
-// import dbConnect from '@server/utils/connectDB'
+import connectDB from "@utility/connectDB"
+import Product from "@models/Product"
 
-// export default function handler(req, res) {
-//     const {method} = req.body
+connectDB()
 
-//     dbConnect()
+const handler = async (req, res) => {
+	const { method } = req
 
-//     switch (method) {
-//         case 'GET':
-//             try {
+	switch (method) {
+		case "GET":
+			try {
+				const products = await Product.find()
 
-//             } catch (err) {
-//                 res.status(500).json(err)
-//             }
+				return res.status(201).json(products)
+			} catch (err) {
+				res.status(500).json({
+					error: err,
+				})
+			}
 
-//             break;
+			break
 
-//         case 'POST':
-//             try {
+		default:
+			break
+	}
+}
 
-//             } catch (err) {
-//                 res.status(500).json(err)
-//             }
-
-//             break;
-
-//         default:
-//             break;
-//     }
-// }
+export default handler

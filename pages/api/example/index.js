@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react"
 
 connectDB()
 
-export default async (req, res) => {
+const handler = async (req, res) => {
 	const session = await getSession({ req })
 
 	if (req.method === "POST") {
@@ -42,3 +42,5 @@ export default async (req, res) => {
 		}
 	}
 }
+
+export default handler

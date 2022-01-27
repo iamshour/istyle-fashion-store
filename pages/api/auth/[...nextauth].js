@@ -64,7 +64,7 @@ export default NextAuth({
 			}
 			if (session.user.image === undefined) {
 				session.user.image =
-					"https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png"
+					"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
 			}
 			return Promise.resolve(session)
 		},

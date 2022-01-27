@@ -70,7 +70,7 @@ const Header = () => {
 	const profile = {
 		link: user ? "/profile" : "/auth",
 		title: user ? user?.name : "Sign in",
-		avatar: user ? user?.image : "https://res.cloudinary.com/dniaqkd0y/image/upload/v1639408597/blank-profile-picture-973460_640_caalj3.png",
+		avatar: user ? user?.image : "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
 	}
 
 	useEffect(() => {
