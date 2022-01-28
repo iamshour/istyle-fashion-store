@@ -1,23 +1,59 @@
+import Modal from "@comps/temporary/Modal"
 import { getData } from "@utility/axiosCalls"
 import Image from "next/image"
+import { useState } from "react"
 
 const ProductPage = ({ product }) => {
+	const [tab, setTab] = useState(0)
+	const [openModal, setOpenModal] = useState(false)
+
+	const selected = (index) => {
+		if (tab === index) return "selected-img"
+		return ""
+	}
+
 	return (
-		<div>
-			<div>
-				<h1>{product?.name}</h1>
-				<p>{product?.description}</p>
-				{product?.images?.map((image, index) => (
-					<Image
-						src={image.url}
-						alt='Specific product image'
-						width={200}
-						height={240}
-						objectFit='cover'
-						key={index}
-					/>
-				))}
+		<div className='product-details-page'>
+			<h1>{product?.name}</h1>
+			<p>{product?.description}</p>
+			<div className='slider'>
+				<Image
+					src={product.images[tab].url}
+					alt='Specific product image'
+					width={300}
+					height={250}
+					objectFit='cover'
+					className='main-img'
+					onClick={() => setOpenModal(true)}
+				/>
+				<div className='bottom-imgs'>
+					{product?.images?.map((image, index) => (
+						<div className={`img-small ${selected(index)}`} key={index}>
+							<Image
+								src={image.url}
+								alt='Specific product image'
+								width={62}
+								height={62}
+								layout='fixed'
+								objectFit='cover'
+								onClick={() => setTab(index)}
+							/>
+						</div>
+					))}
+				</div>
 			</div>
+			{openModal && (
+				<Modal setOpen={setOpenModal}>
+					<div className='modal-content-img'>
+						<Image
+							src={product.images[tab].url}
+							alt='Specific product image'
+							layout='fill'
+							objectFit='cover'
+						/>
+					</div>
+				</Modal>
+			)}
 		</div>
 	)
 }

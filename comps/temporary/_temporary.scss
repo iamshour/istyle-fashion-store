@@ -1,23 +1,13 @@
 .modal-backdrop {
+	z-index: 9999;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 0, 0, 0.93);
 	@include centering;
-
-	.modal-content {
-		width: 80%;
-		height: 50%;
-		position: relative;
-		z-index: 1;
-		background: white;
-		p {
-			z-index: inherit;
-			color: black;
-		}
-	}
+	cursor: pointer;
 }
 
 .loading-container {
