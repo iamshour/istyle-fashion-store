@@ -205,6 +205,25 @@ header {
 	}
 }
 
+.details-page-header {
+	padding: 2rem;
+	.nav-btn,
+	.cart,
+	nav {
+		display: none;
+	}
+
+	.back-icon,
+	.fav-icon {
+		@include pressed;
+		.icon {
+			font-size: 3rem;
+			color: var(--font);
+			color: var(--main-bg-dark);
+		}
+	}
+}
+
 footer {
 	margin-top: 10rem;
 	display: flex;

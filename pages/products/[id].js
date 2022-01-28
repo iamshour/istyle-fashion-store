@@ -1,59 +1,33 @@
-import Modal from "@comps/temporary/Modal"
+import ImageSlider from "@comps/products/ImageSlider"
 import { getData } from "@utility/axiosCalls"
-import Image from "next/image"
-import { useState } from "react"
+import { BsInfoCircle } from "react-icons/bs"
 
 const ProductPage = ({ product }) => {
-	const [tab, setTab] = useState(0)
-	const [openModal, setOpenModal] = useState(false)
-
-	const selected = (index) => {
-		if (tab === index) return "selected-img"
-		return ""
-	}
-
 	return (
 		<div className='product-details-page'>
-			<h1>{product?.name}</h1>
-			<p>{product?.description}</p>
-			<div className='slider'>
-				<Image
-					src={product.images[tab].url}
-					alt='Specific product image'
-					width={300}
-					height={250}
-					objectFit='cover'
-					className='main-img'
-					onClick={() => setOpenModal(true)}
-				/>
-				<div className='bottom-imgs'>
-					{product?.images?.map((image, index) => (
-						<div className={`img-small ${selected(index)}`} key={index}>
-							<Image
-								src={image.url}
-								alt='Specific product image'
-								width={62}
-								height={62}
-								layout='fixed'
-								objectFit='cover'
-								onClick={() => setTab(index)}
-							/>
-						</div>
+			<h1 className='title'>{product?.name}</h1>
+			<ImageSlider images={product?.images} />
+			<div className='description'>
+				<BsInfoCircle className='icon' />
+				<p>{product?.description}</p>
+			</div>
+			<div className='sizes'>
+				<h4>Select Size</h4>
+				<div className='options'>
+					{product.size.map((item) => (
+						<label>
+							<input type='radio' name='options' key={item} />
+							<span>{item}</span>
+						</label>
 					))}
 				</div>
 			</div>
-			{openModal && (
-				<Modal setOpen={setOpenModal}>
-					<div className='modal-content-img'>
-						<Image
-							src={product.images[tab].url}
-							alt='Specific product image'
-							layout='fill'
-							objectFit='cover'
-						/>
-					</div>
-				</Modal>
-			)}
+			<div className='page-bottom'>
+				<h1>${product.price}</h1>
+				<buttom className='add-to-cart-btn'>
+					<h2>Add to cart</h2>
+				</buttom>
+			</div>
 		</div>
 	)
 }

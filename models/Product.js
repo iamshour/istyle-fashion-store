@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			trim: [true, "Please add's product name"],
+			max: 42,
 		},
 		price: {
 			type: Number,

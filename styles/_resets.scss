@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prata&family=Poppins:wght@400;700&display=swap");
 
 :root {
 	--app-bg: #fcf9ee;
@@ -8,6 +8,8 @@
 
 	--main-bg-light: #dcbf58;
 	--main-bg-dark: #9d8329;
+
+	--cta-dark: rgb(28, 26, 26);
 
 	--second-bg-light: #00dac0;
 	--second-bg-dark: #00a28a;
@@ -128,8 +130,8 @@ p {
 h1,
 h2,
 h3 {
-	font-family: "Playfair Display", serif;
-	font-weight: 600;
+	font-family: "Prata", serif;
+	font-weight: 400;
 }
 
 h4,

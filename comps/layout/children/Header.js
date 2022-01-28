@@ -2,52 +2,25 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import Logo from "@comps/layout/children/Logo"
 import { useSession } from "next-auth/react"
+//COMPS
+import Logo from "@comps/layout/children/Logo"
 //ICONS
 import { AiOutlineShoppingCart } from "react-icons/ai"
-import { BsFillMoonFill } from "react-icons/bs"
-import { FiSun } from "react-icons/fi"
+import HeaderDetailsPage from "./HeaderDetailsPage"
+import { ThemeBtn } from "./ThemeBtn"
 
 const Header = () => {
-	const router = useRouter()
 	const [navActive, setNavActive] = useState(false)
 	const [customDoc, setCustomDoc] = useState(null)
-	const [theme, setTheme] = useState("light")
-	
+
+	const router = useRouter()
 	const user = useSession()?.data?.user
+	const isDetailsPage = router.pathname === "/products/[id]" ? true : false
 
 	useEffect(() => {
 		setCustomDoc(document)
 	}, [navActive])
-
-	useEffect(() => {
-		setTheme(
-			localStorage.getItem("theme")
-				? localStorage.getItem("theme")
-				: localStorage?.setItem("theme", theme)
-		)
-
-		document.documentElement.setAttribute("data-theme", theme)
-	}, [theme, router.pathname])
-
-	const saveTheme = (theme) => {
-		setTheme(theme)
-		localStorage.setItem("theme", theme)
-		document.documentElement.setAttribute("data-theme", theme)
-	}
-
-	const switcher = () => {
-		if (theme === "light") {
-			saveTheme("dark")
-			document.querySelector("body").style.transition =
-				"background 250ms ease-in-out, color 250ms ease-in-out"
-		} else {
-			saveTheme("light")
-			document.querySelector("body").style.transition =
-				"background 250ms ease-in-out, color 250ms ease-in-out"
-		}
-	}
 
 	const isActive = (link) => {
 		if (router.pathname === link) {
@@ -70,7 +43,9 @@ const Header = () => {
 	const profile = {
 		link: user ? "/profile" : "/auth",
 		title: user ? user?.name : "Sign in",
-		avatar: user ? user?.image : "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
+		avatar: user
+			? user?.image
+			: "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
 	}
 
 	useEffect(() => {
@@ -78,7 +53,10 @@ const Header = () => {
 	}, [navActive])
 
 	return (
-		<header>
+		<header className={isDetailsPage ? "details-page-header" : ""}>
+			{isDetailsPage && (
+				<HeaderDetailsPage router={router}/>
+			)}
 			<button
 				className={`nav-btn ${navActive ? "nav-btn-active" : ""}`}
 				onClick={() => {
@@ -107,15 +85,7 @@ const Header = () => {
 					))}
 				</div>
 				<div className='nav-bottom'>
-					<button
-						onClick={switcher}
-						className={`theme-wrapper ${theme === "dark" ? "active" : ""}`}>
-						{theme === "light" ? (
-							<BsFillMoonFill className='icon' />
-						) : (
-							<FiSun className='icon' />
-						)}
-					</button>
+					<ThemeBtn />
 					<Link href='/'>
 						<a className='logo' onClick={() => setNavActive(false)}>
 							<Logo />
