@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react"
 //COMPS
 import Logo from "@comps/layout/children/Logo"
 //ICONS
-import { AiOutlineShoppingCart } from "react-icons/ai"
+import { BsBag } from "react-icons/bs"
 import HeaderDetailsPage from "./HeaderDetailsPage"
 import { ThemeBtn } from "./ThemeBtn"
 
@@ -94,8 +94,8 @@ const Header = () => {
 				</div>
 			</nav>
 			<Link href='/cart'>
-				<a className={`cart ${isActive("/cart")}`}>
-					<AiOutlineShoppingCart className='icon' />
+				<a className={`icon-btn cart-btn ${isActive("/cart")}`}>
+					<BsBag className='icon' />
 				</a>
 			</Link>
 		</header>

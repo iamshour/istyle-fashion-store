@@ -7,12 +7,12 @@ const HeaderDetailsPage = ({ router }) => {
 
 	return (
 		<>
-			<button onClick={() => router.back()} className='back-icon'>
+			<button onClick={() => router.back()} className='icon-btn'>
 				<HiOutlineArrowNarrowLeft className='icon' />
 			</button>
-			<button className='fav-icon' onClick={() => setFavAdded((prev) => !prev)}>
+			<button className='icon-btn' onClick={() => setFavAdded((prev) => !prev)}>
 				{favAdded ? (
-					<BsSuitHeartFill className='icon' />
+					<BsSuitHeartFill className='icon icon-pressed' />
 				) : (
 					<BsSuitHeart className='icon' />
 				)}

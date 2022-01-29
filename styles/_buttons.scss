@@ -101,3 +101,20 @@
 	height: 46px;
 	font-size: 14px;
 }
+
+.icon-btn {
+	color: var(--font-light);
+	cursor: pointer;
+	transition: all 250ms ease-in-out;
+
+	.icon {
+		font-size: 2.4rem;
+		color: inherit;
+	}
+
+	&:hover,
+	&:active {
+		color: var(--main-bg-light);
+		transform: scale(0.98);
+	}
+}

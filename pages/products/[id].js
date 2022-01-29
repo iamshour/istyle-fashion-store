@@ -15,8 +15,8 @@ const ProductPage = ({ product }) => {
 				<h4>Select Size</h4>
 				<div className='options'>
 					{product.size.map((item) => (
-						<label>
-							<input type='radio' name='options' key={item} />
+						<label key={item}>
+							<input type='radio' name='options' />
 							<span>{item}</span>
 						</label>
 					))}

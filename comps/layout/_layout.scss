@@ -18,11 +18,11 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.6rem;
+	padding: 1.6rem 2rem;
 
 	.nav-btn {
-		width: 5rem;
-		height: 4rem;
+		width: 4.2rem;
+		height: 4.2rem;
 		position: relative;
 		cursor: pointer;
 		overflow: hidden;
@@ -31,21 +31,28 @@ header {
 		span {
 			position: absolute;
 			width: 30px;
-			height: 3px;
-			background: var(--main-bg-dark);
+			height: 2px;
+			background: var(--font-light);
 			border-radius: 4px;
 			transition: all 400ms ease-in-out;
-			left: 15px;
+			left: 8px;
 
 			&:nth-of-type(1) {
 				transform: translateY(-8px);
 				width: 20px;
-				left: 15px;
+				left: 8px;
 			}
 			&:nth-of-type(2) {
 				transform: translateY(8px);
 				width: 10px;
-				left: 15px;
+				left: 8px;
+			}
+		}
+
+		&:hover,
+		&:active {
+			span {
+				background: var(--main-bg-light);
 			}
 		}
 	}
@@ -69,9 +76,8 @@ header {
 			}
 		}
 	}
-
 	nav {
-		padding: 8rem 3rem 3rem 3rem;
+		padding: 6rem 3rem;
 		display: none;
 		position: fixed;
 		width: 100%;
@@ -101,13 +107,13 @@ header {
 			justify-content: center;
 			align-items: center;
 			position: absolute;
-			top: 2.4rem;
-			right: 2.4rem;
+			top: 2rem;
+			right: 2rem;
 			cursor: pointer;
 
 			.img {
-				margin-bottom: 0.6rem;
-				border: 1px solid var(--main-bg-dark);
+				margin-bottom: 0.7rem;
+				border: 1px solid var(--font-light);
 				border-radius: 50%;
 				overflow: hidden;
 				width: 45px;
@@ -116,12 +122,13 @@ header {
 			h4 {
 				transition: all 250ms ease-in-out;
 				font-size: 1.3rem;
-				color: var(--main-bg-light);
+				color: var(--font-light);
+				font-weight: 400;
 			}
 			&:hover,
 			&:active {
 				h4 {
-					color: var(--main-bg-dark);
+					color: var(--main-bg-light);
 				}
 			}
 		}
@@ -130,21 +137,20 @@ header {
 			h4 {
 				height: auto;
 				transition: color 200ms ease-in;
-				font-size: 2.2rem;
-				margin: 3.6rem 0;
-				padding-bottom: 0.5rem;
+				font-size: 2rem;
+				margin: 4rem 0;
 				letter-spacing: 1px;
 				font-weight: 300;
 				@include line-hover;
 
 				&:hover,
 				&:active {
-					color: var(--main-bg-dark);
+					color: var(--main-bg-light);
 				}
 			}
 
 			h4.active {
-				color: var(--main-bg-dark);
+				color: var(--main-bg-light);
 				&::before {
 					opacity: 1;
 					transform: unset;
@@ -162,7 +168,7 @@ header {
 				cursor: pointer;
 				@include pressed;
 				overflow: visible;
-				width: 18rem;
+				width: 16rem;
 				height: auto;
 			}
 
@@ -171,7 +177,7 @@ header {
 				@include icon-unactive;
 
 				.icon {
-					font-size: 3.2rem;
+					font-size: 2.8rem;
 					color: var(--main-bg-dark);
 				}
 			}
@@ -180,47 +186,27 @@ header {
 			}
 		}
 	}
-
 	.nav-active {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		z-index: 14;
 	}
-
-	.cart {
-		@include centering;
-		@include icon-unactive;
-		color: var(--main-bg-dark);
-
-		.icon {
-			font-size: 3rem;
-			color: inherit;
-			position: relative;
-			right: 1px;
-		}
-	}
-	.cart.active {
-		@include icon-active;
+	//for cart
+	.icon-btn.active {
+		color: var(--main-bg-light);
 	}
 }
 
 .details-page-header {
-	padding: 2rem;
 	.nav-btn,
-	.cart,
+	.cart-btn,
 	nav {
 		display: none;
 	}
 
-	.back-icon,
-	.fav-icon {
-		@include pressed;
-		.icon {
-			font-size: 3rem;
-			color: var(--font);
-			color: var(--main-bg-dark);
-		}
+	.icon-pressed {
+		color: #ff0000;
 	}
 }
 
