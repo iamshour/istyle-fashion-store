@@ -4,7 +4,7 @@ import { BsInfoCircle } from "react-icons/bs"
 
 const ProductPage = ({ product }) => {
 	return (
-		<div className='product-details-page'>
+		<>
 			<h1 className='title'>{product?.name}</h1>
 			<ImageSlider images={product?.images} />
 			<div className='description'>
@@ -24,11 +24,11 @@ const ProductPage = ({ product }) => {
 			</div>
 			<div className='page-bottom'>
 				<h1>${product.price}</h1>
-				<buttom className='add-to-cart-btn'>
+				<button className='add-to-cart-btn'>
 					<h2>Add to cart</h2>
-				</buttom>
+				</button>
 			</div>
-		</div>
+		</>
 	)
 }
 

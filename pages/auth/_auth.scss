@@ -1,11 +1,6 @@
 .auth-container {
 	background-color: var(--app-bg);
 	background-image: var(--auth-page-bg);
-}
-
-.auth-page {
-	width: 100%;
-	min-height: calc(100vh - 96px);
 
 	.wrapper {
 		margin-top: -3rem;

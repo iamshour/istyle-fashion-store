@@ -5,15 +5,15 @@ import { useState } from "react"
 const Products = ({ data }) => {
 	const [products, setProducts] = useState(data)
 
+	if (products?.length === 0) {
+		return <h1>No products available at the moment</h1>
+	}
+
 	return (
-		<div className='products-page'>
-			<div className='container'>
-				{products?.length === 0 ? (
-					<h1>No products available at the moment</h1>
-				) : (
-					products.map((product) => <ProductCard key={product._id} product={product} />)
-				)}
-			</div>
+		<div className='container'>
+			{products.map((product) => (
+				<ProductCard key={product._id} product={product} />
+			))}
 		</div>
 	)
 }

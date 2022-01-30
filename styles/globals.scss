@@ -6,8 +6,10 @@
 @import "@pages/cart/cart";
 @import "@pages/profile/profile";
 @import "@pages/products/products";
-@import "@comps/layout/layout";
-@import "@comps/temporary/temporary";
+@import "@pages/products/singleProduct";
+@import "@comps/layout/footer/footer";
+@import "@comps/layout/header/header";
+@import "@comps/assets/assets";
 
 label,
 textarea,
@@ -77,4 +79,19 @@ textarea {
 	border-radius: 16px;
 	padding: 1rem;
 	color: var(--font);
+}
+
+.app-container {
+	width: 100%;
+	max-width: 1200px;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.app-page {
+		min-height: calc(100vh - 74px);
+	}
 }

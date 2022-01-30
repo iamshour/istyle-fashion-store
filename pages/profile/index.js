@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export default function Profile({ session }) {
 	return (
-		<div>
+		<>
 			<div className='cont'>
 				<Image
 					src={session?.user?.image}
@@ -18,7 +18,7 @@ export default function Profile({ session }) {
 					SIGN OUT
 				</button>
 			</div>
-		</div>
+		</>
 	)
 }
 

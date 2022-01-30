@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Modal from "@comps/temporary/Modal"
+import Modal from "@comps/assets/Modal"
 import Image from "next/image"
 
 const ImageSlider = ({ images }) => {

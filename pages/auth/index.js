@@ -68,55 +68,44 @@ export default function Auth({ providers }) {
 		emailInput.current.value = ""
 	}
 
+	const formClassName = !showSignIn ? "signup-form" : ""
+
 	return (
-		<>
-			<Head>
-				<title>iStyle Fashion Store | Sign In</title>
-				<link rel='preconnect' href='https://fonts.googleapis.com' />
-				<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='true' />
-				<link
-					href='https://fonts.googleapis.com/css2?family=Roboto&display=swap'
-					rel='stylesheet'
-				/>
-			</Head>
-			<div className='auth-page'>
-				<div className='wrapper'>
-					<AuthSvg />
-					<div className='form-wrapper'>
-						<form onSubmit={handleSubmit} className={!showSignIn ? "signup-form" : ""}>
-							<div className='top'>
-								<h4>{showSignIn ? "Sign In" : "Create an account"}</h4>
-								<div className='top-action'>
-									<h2>{showSignIn ? "Don't" : "Already"} have an account?</h2>
-									<button onClick={() => setShowSignIn((prev) => !prev)} type='button'>
-										<p>{showSignIn ? "Sign up" : "Sign in"}</p>
-									</button>
-								</div>
-							</div>
-							<div className='input-bar-icon'>
-								<HiOutlineMail className='icon' />
-								<input type='text' placeholder='Enter your email' ref={emailInput} />
-							</div>
-							<button type='submit' className='btn email-btn'>
-								Continue
+		<div className='wrapper'>
+			<AuthSvg />
+			<div className='form-wrapper'>
+				<form onSubmit={handleSubmit} className={formClassName}>
+					<div className='top'>
+						<h4>{showSignIn ? "Sign In" : "Create an account"}</h4>
+						<div className='top-action'>
+							<h2>{showSignIn ? "Don't" : "Already"} have an account?</h2>
+							<button onClick={() => setShowSignIn((prev) => !prev)} type='button'>
+								<p>{showSignIn ? "Sign up" : "Sign in"}</p>
 							</button>
-							<h5>
-								We&apos;ll email you a magic code for a password-free
-								{showSignIn ? "Sign in" : "Sign up"}!
-							</h5>
-						</form>
-						<div className='social-auth-btns'>
-							<h4>OR</h4>
-							{Object?.values(providers)
-								?.filter((i) => i.name !== "Email")
-								?.map((provider) => (
-									<AuthBtn key={provider?.name} provider={provider} />
-								))}
 						</div>
 					</div>
+					<div className='input-bar-icon'>
+						<HiOutlineMail className='icon' />
+						<input type='text' placeholder='Enter your email' ref={emailInput} />
+					</div>
+					<button type='submit' className='btn email-btn'>
+						Continue
+					</button>
+					<h5>
+						We&apos;ll email you a magic code for a password-free{" "}
+						{showSignIn ? "Sign in" : "Sign up"}!
+					</h5>
+				</form>
+				<div className='social-auth-btns'>
+					<h4>OR</h4>
+					{Object?.values(providers)
+						?.filter((i) => i.name !== "Email")
+						?.map((provider) => (
+							<AuthBtn key={provider?.name} provider={provider} />
+						))}
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
 
