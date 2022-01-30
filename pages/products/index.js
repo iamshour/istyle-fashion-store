@@ -6,7 +6,7 @@ const Products = ({ data }) => {
 	const [products, setProducts] = useState(data)
 
 	if (products?.length === 0) {
-		return <h1>No products available at the moment</h1>
+		return <h1>Noo products available at the moment!</h1>
 	}
 
 	return (
