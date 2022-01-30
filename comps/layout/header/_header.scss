@@ -188,8 +188,13 @@ header {
 	nav {
 		display: none;
 	}
+	height: 74px;
 
 	.icon-pressed {
 		color: #ff0000;
+	}
+
+	.icon {
+		font-size: 2.8rem;
 	}
 }
