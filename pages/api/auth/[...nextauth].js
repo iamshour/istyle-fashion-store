@@ -55,13 +55,17 @@ export default NextAuth({
 
 			const currentUser = session?.user
 
-			if (typeof currentUser?.name === undefined) {
-				currentUser?.name = currentUser?.email?.match(/^.*(?=@)/g)[0]
-			}
+			currentUser?.name === undefined
+				? currentUser?.email?.match(/^.*(?=@)/g)[0]
+				: currentUser?.name
 
-			if (typeof currentUser?.image === undefined) {
-				currentUser?.image = "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-			}
+			currentUser?.image === undefined
+				? "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+				: currentUser?.image
+
+			// if (typeof currentUser?.image === undefined) {
+			// 	currentUser?.image = "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+			// }
 			return Promise.resolve(session)
 		},
 	},
