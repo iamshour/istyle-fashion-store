@@ -52,7 +52,7 @@ export default NextAuth({
 		async session({ session, token }) {
 			session.userId = token.sub
 
-			const { user } = session
+			const user = session?.user
 
 			user?.name === undefined ? user?.email?.match(/^.*(?=@)/g)[0] : user?.name
 
