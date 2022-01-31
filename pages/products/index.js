@@ -2,7 +2,8 @@ import ProductCard from "@comps/products/ProductCard"
 import { getData } from "@utility/axiosCalls"
 import { useState } from "react"
 
-const Products = () => {
+const Products = ({ dataSet }) => {
+	console.log(dataSet)
 	let data = []
 	const [products, setProducts] = useState(data)
 
@@ -22,11 +23,11 @@ const Products = () => {
 
 export default Products
 
-// export async function getServerSideProps() {
-// 	const { data } = await getData("products")
-// 	return {
-// 		props: {
-// 			data,
-// 		},
-// 	}
-// }
+export async function getServerSideProps() {
+	const { data } = await getData("products")
+	return {
+		props: {
+			dataSet: data,
+		},
+	}
+}
