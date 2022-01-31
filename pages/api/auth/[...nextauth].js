@@ -15,14 +15,6 @@ export default NextAuth({
 		GoogleProvider({
 			clientId: process.env.GOOGLE_ID,
 			clientSecret: process.env.GOOGLE_SECRET,
-			// profile(profile) {
-			// 	console.log(profile)
-			// 	return {
-			// 		// Return all the profile information you need.
-			// 		// The only truly required field is `id`
-			// 		// to be able identify the account when added to a database
-			// 	}
-			// },
 		}),
 		FacebookProvider({
 			clientId: process.env.FACEBOOK_ID,
@@ -59,13 +51,13 @@ export default NextAuth({
 	callbacks: {
 		async session({ session, token }) {
 			session.userId = token.sub
-			if (session.user.name === undefined) {
-				session.user.name = session.user.email.match(/^.*(?=@)/g)[0]
-			}
-			if (session.user.image === undefined) {
-				session.user.image =
-					"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-			}
+			// if (session && session?.user?.name === undefined) {
+			// 	session?.user?.name = session?.user?.email?.match(/^.*(?=@)/g)[0]
+			// }
+			// if (session && session?.user?.image === undefined) {
+			// 	session?.user?.image =
+			// 		"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+			// }
 			return Promise.resolve(session)
 		},
 	},

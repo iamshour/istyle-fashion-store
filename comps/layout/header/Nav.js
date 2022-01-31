@@ -31,8 +31,8 @@ const Nav = ({ isActive }) => {
 
 	const profile = {
 		link: user ? "/profile" : "/auth",
-		title: user ? user?.name : "Sign in",
-		avatar: user
+		title: user && user?.name ? user?.name : "Sign in",
+		avatar: user && user?.image
 			? user?.image
 			: "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
 	}

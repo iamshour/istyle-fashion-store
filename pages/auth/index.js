@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react"
+import { useState, useContext, useRef, useEffect } from "react"
 import { DataContext } from "@context/GlobalContext"
 import { NOTIFY } from "@context/Actions"
 import { emailValidate } from "@utility/validation"
@@ -8,13 +8,15 @@ import AuthSvg from "@comps/auth/AuthSvg"
 import AuthBtn from "@comps/auth/AuthBtn"
 //ICONS
 import { HiOutlineMail } from "react-icons/hi"
-import Head from "next/head"
 import axios from "axios"
+import { useRouter } from "next/router"
 
 export default function Auth({ providers }) {
 	const [showSignIn, setShowSignIn] = useState(true)
 	const [state, dispatch] = useContext(DataContext)
 	let emailInput = useRef("")
+	const router = useRouter()
+	const queryError = router?.query?.error
 
 	const handleSubmit = async (e) => {
 		dispatch({
@@ -67,6 +69,16 @@ export default function Auth({ providers }) {
 
 		emailInput.current.value = ""
 	}
+
+	useEffect(() => {
+		if (queryError) {
+			dispatch({
+				type: NOTIFY,
+				payload: { error: `An error occured related to: ${queryError}` },
+			})
+			router.replace("/auth", undefined, { shallow: true })
+		}
+	}, [queryError])
 
 	const formClassName = !showSignIn ? "signup-form" : ""
 

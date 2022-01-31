@@ -13,7 +13,7 @@ const connectDB = () => {
 		return
 	}
 	return mongoose.connect(url, options, (err) => {
-		if (err) throw Error
+		if (err) throw new Error("Some error occured. Please refresh the page.")
 		console.log("Connected to the DB!")
 	})
 }

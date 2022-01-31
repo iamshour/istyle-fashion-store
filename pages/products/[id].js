@@ -2,7 +2,14 @@ import ImageSlider from "@comps/products/ImageSlider"
 import { getData } from "@utility/axiosCalls"
 import { BsInfoCircle } from "react-icons/bs"
 
-const ProductPage = ({ product }) => {
+const ProductPage = () => {
+	let product = {
+		name: "testing",
+		images: [],
+		description: "this is just a test",
+		size: ["S", "M", "L"],
+		price: 4,
+	}
 	return (
 		<>
 			<h1 className='title'>{product?.name}</h1>
@@ -34,21 +41,21 @@ const ProductPage = ({ product }) => {
 
 export default ProductPage
 
-export async function getStaticPaths() {
-	const { data } = await getData("products")
-	const paths = data.map((item) => ({ params: { id: item._id } }))
-	return {
-		paths,
-		fallback: false,
-	}
-}
+// export async function getStaticPaths() {
+// 	const { data } = await getData("products")
+// 	const paths = data?.map((item) => ({ params: { id: item?._id } }))
+// 	return {
+// 		paths,
+// 		fallback: false,
+// 	}
+// }
 
-export async function getStaticProps({ params }) {
-	const { data } = await getData(`products/${params.id}`)
-	return {
-		props: {
-			product: data,
-		},
-		revalidate: 3600,
-	}
-}
+// export async function getStaticProps({ params }) {
+// 	const { data } = await getData(`products/${params.id}`)
+// 	return {
+// 		props: {
+// 			product: data,
+// 		},
+// 		revalidate: 3600,
+// 	}
+// }

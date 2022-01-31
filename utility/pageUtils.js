@@ -49,3 +49,26 @@ export const authHead = (link) => {
 	}
 	return null
 }
+
+export const subUser = (user) => {
+	if (!user?.name && !user?.image)
+		return {
+			name: user?.email.match(/^.*(?=@)/g)[0],
+			image:
+				"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
+		}
+
+	if (!user?.name) return user?.email.match(/^.*(?=@)/g)[0]
+
+	if (!user?.image)
+		return "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+
+	return
+}
+
+export const subName = (email) => {
+	return email.match(/^.*(?=@)/g)[0]
+}
+
+export const subImage =
+	"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"

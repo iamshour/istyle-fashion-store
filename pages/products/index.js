@@ -2,7 +2,8 @@ import ProductCard from "@comps/products/ProductCard"
 import { getData } from "@utility/axiosCalls"
 import { useState } from "react"
 
-const Products = ({ data }) => {
+const Products = () => {
+	let data = []
 	const [products, setProducts] = useState(data)
 
 	if (products?.length === 0) {
@@ -11,20 +12,21 @@ const Products = ({ data }) => {
 
 	return (
 		<div className='container'>
-			{products.map((product) => (
+			{/* {products.map((product) => (
 				<ProductCard key={product._id} product={product} />
-			))}
+			))} */}
+			EMPTY
 		</div>
 	)
 }
 
 export default Products
 
-export async function getServerSideProps() {
-	const { data } = await getData("products")
-	return {
-		props: {
-			data,
-		},
-	}
-}
+// export async function getServerSideProps() {
+// 	const { data } = await getData("products")
+// 	return {
+// 		props: {
+// 			data,
+// 		},
+// 	}
+// }

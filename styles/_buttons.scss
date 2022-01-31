@@ -105,7 +105,7 @@
 .icon-btn {
 	color: var(--font-light);
 	cursor: pointer;
-	transition: all 250ms ease-in-out;
+	transition: color 250ms ease-in-out;
 
 	.icon {
 		font-size: 2.4rem;
@@ -115,6 +115,5 @@
 	&:hover,
 	&:active {
 		color: var(--main-bg-light);
-		transform: scale(0.98);
 	}
 }
