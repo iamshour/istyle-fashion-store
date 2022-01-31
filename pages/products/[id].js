@@ -13,7 +13,7 @@ const ProductPage = () => {
 	return (
 		<>
 			<h1 className='title'>{product?.name}</h1>
-			<ImageSlider images={product?.images} />
+			{/* <ImageSlider images={product?.images} /> */}
 			<div className='description'>
 				<BsInfoCircle className='icon' />
 				<p>{product?.description}</p>
