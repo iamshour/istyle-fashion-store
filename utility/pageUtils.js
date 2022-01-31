@@ -50,25 +50,43 @@ export const authHead = (link) => {
 	return null
 }
 
-export const subUser = (user) => {
-	if (!user?.name && !user?.image)
-		return {
-			name: user?.email.match(/^.*(?=@)/g)[0],
-			image:
-				"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
-		}
+// export const subUser = (user) => {
+// 	if (!user?.name && !user?.image)
+// 		return {
+// 			name: user?.email.match(/^.*(?=@)/g)[0],
+// 			image:
+// 				"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
+// 		}
 
-	if (!user?.name) return user?.email.match(/^.*(?=@)/g)[0]
+// 	if (!user?.name) return user?.email.match(/^.*(?=@)/g)[0]
 
-	if (!user?.image)
-		return "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+// 	if (!user?.image)
+// 		return "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
 
-	return
+// 	return
+// }
+
+// export const subName = (email) => {
+// 	return email.match(/^.*(?=@)/g)[0]
+// }
+
+// export const subImage =
+// 	"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+
+export const nameFunc = (name, email) => {
+	return name === undefined ? email?.match(/^.*(?=@)/g)[0] : name
 }
 
-export const subName = (email) => {
-	return email.match(/^.*(?=@)/g)[0]
+export const imageFunc = (image) => {
+	var str = JSON.stringify(image, (value) => {
+		return value === undefined ? "custom image" : value
+	})
+	return JSON.parse(str)
 }
 
-export const subImage =
-	"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+// export const replaceUndefinied = (item) => {
+// 	var str = JSON.stringify(item, (key, value) => {
+// 		return value === undefined ? "" : value
+// 	})
+// 	return JSON.parse(str)
+// }
