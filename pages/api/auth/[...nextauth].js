@@ -51,13 +51,13 @@ export default NextAuth({
 	callbacks: {
 		async session({ session, token }) {
 			session.userId = token.sub
-			// if (session && session?.user?.name === undefined) {
-			// 	session?.user?.name = session?.user?.email?.match(/^.*(?=@)/g)[0]
-			// }
-			// if (session && session?.user?.image === undefined) {
-			// 	session?.user?.image =
-			// 		"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-			// }
+			if (session && session?.user?.name === undefined) {
+				session?.user?.name = session?.user?.email?.match(/^.*(?=@)/g)[0]
+			}
+			if (session && session?.user?.image === undefined) {
+				session?.user?.image =
+					"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+			}
 			return Promise.resolve(session)
 		},
 	},
