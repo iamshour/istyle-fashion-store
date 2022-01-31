@@ -6,7 +6,6 @@ import GoogleProvider from "next-auth/providers/google"
 import EmailProvider from "next-auth/providers/email"
 import { html, text } from "@utility/emailUtils"
 import nodemailer from "nodemailer"
-import { fillGaps, nameFunc, replaceUndefinied } from "@utility/pageUtils"
 
 export default NextAuth({
 	session: {
@@ -53,19 +52,14 @@ export default NextAuth({
 		async session({ session, token }) {
 			session.userId = token.sub
 
-			const currentUser = session?.user
+			const { user } = session
 
-			currentUser?.name === undefined
-				? currentUser?.email?.match(/^.*(?=@)/g)[0]
-				: currentUser?.name
+			user?.name === undefined ? user?.email?.match(/^.*(?=@)/g)[0] : user?.name
 
-			currentUser?.image === undefined
+			user?.image === undefined
 				? "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-				: currentUser?.image
+				: user?.image
 
-			// if (typeof currentUser?.image === undefined) {
-			// 	currentUser?.image = "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-			// }
 			return Promise.resolve(session)
 		},
 	},
