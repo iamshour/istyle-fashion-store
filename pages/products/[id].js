@@ -3,17 +3,10 @@ import { getData } from "@utility/axiosCalls"
 import { BsInfoCircle } from "react-icons/bs"
 
 const ProductPage = ({ product }) => {
-	// let product = {
-	// 	name: "testing",
-	// 	images: [],
-	// 	description: "this is just a test",
-	// 	size: ["S", "M", "L"],
-	// 	price: 4,
-	// }
 	return (
 		<>
 			<h1 className='title'>{product?.name}</h1>
-			{/* <ImageSlider images={product?.images} /> */}
+			<ImageSlider images={product?.images} />
 			<div className='description'>
 				<BsInfoCircle className='icon' />
 				<p>{product?.description}</p>
