@@ -1,8 +1,44 @@
-import ImageSlider from "@comps/products/ImageSlider"
+import { useContext } from "react"
+import { DataContext } from "@context/GlobalContext"
+import { addToCart } from "@context/Actions"
 import { getData } from "@utility/axiosCalls"
-import { BsInfoCircle } from "react-icons/bs"
+import ImageSlider from "@comps/products/ImageSlider"
+
+import { BsInfoCircle, BsBagCheck, BsBagPlus } from "react-icons/bs"
+import { CgUnavailable } from "react-icons/cg"
 
 const ProductPage = ({ product }) => {
+	const [state, dispatch] = useContext(DataContext)
+	const { cart } = state
+
+	const outOfStock = product.inStock === 0 ? true : false
+
+	const cartCheck = () => {
+		return (
+			<button
+				onClick={() => dispatch(addToCart(product._id, outOfStock, cart))}
+				className={`add-to-cart-btn ${outOfStock ? "disabled-btn" : ""}`}
+				disabled={outOfStock ? true : false}>
+				{outOfStock ? (
+					<>
+						<h2>Out of Stock</h2>
+						<CgUnavailable className='icon' />
+					</>
+				) : cart?.includes(product._id) ? (
+					<>
+						<h2>Added in cart</h2>
+						<BsBagCheck className='icon' />
+					</>
+				) : (
+					<>
+						<h2>Add to cart</h2>
+						<BsBagPlus className='icon' />
+					</>
+				)}
+			</button>
+		)
+	}
+
 	return (
 		<>
 			<h1 className='title'>{product?.name}</h1>
@@ -24,9 +60,7 @@ const ProductPage = ({ product }) => {
 			</div>
 			<div className='page-bottom'>
 				<h1>${product.price}</h1>
-				<button className='add-to-cart-btn'>
-					<h2>Add to cart</h2>
-				</button>
+				{cartCheck()}
 			</div>
 		</>
 	)

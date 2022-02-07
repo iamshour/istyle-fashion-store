@@ -23,16 +23,6 @@
 	}
 }
 
-@mixin pressed {
-	cursor: pointer;
-	transition: transform 250ms ease-in-out;
-
-	&:hover,
-	&:active {
-		transform: scale(0.99);
-	}
-}
-
 @mixin fade-in {
 	opacity: 0;
 	animation: fade-in 0.2s ease-in forwards;

@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom"
 import { useState, useEffect } from "react"
 
-const Modal = ({ children, setOpen }) => {
+const Modal = ({ children, open, setOpen }) => {
 	const [mounted, setMounted] = useState(false)
 
 	useEffect(() => {
@@ -11,6 +11,14 @@ const Modal = ({ children, setOpen }) => {
 	const handleClose = (e) => {
 		if (e.target.classList.contains("modal-backdrop")) return setOpen(false)
 	}
+
+	useEffect(() => {
+		document.documentElement.style.overflowY = "hidden"
+
+		return () => {
+			document.documentElement.style.overflowY = "visible"
+		}
+	}, [open])
 
 	return mounted
 		? createPortal(

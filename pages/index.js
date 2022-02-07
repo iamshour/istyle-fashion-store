@@ -1,5 +1,9 @@
-import Head from "next/head"
-
 export default function Home() {
-	return <div>HomePage</div>
+	return (
+		<>
+			<div>
+				<div>HOMEPAGE</div>
+			</div>
+		</>
+	)
 }

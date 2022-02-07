@@ -1,44 +1,33 @@
 import { useState } from "react"
 import Modal from "@comps/assets/Modal"
 import Image from "next/image"
+import { Carousel } from "react-bootstrap"
 
 const ImageSlider = ({ images }) => {
-	const [tab, setTab] = useState(0)
 	const [openModal, setOpenModal] = useState(false)
 
-	const selected = (index) => {
-		if (tab === index) return "selected-img"
-		return ""
-	}
-
 	return (
-		<div className='slider'>
-			<Image
-				src={images[tab].url}
-				alt='Specific product image'
-				width={300}
-				height={250}
-				objectFit='cover'
-				className='main-img'
-				onClick={() => setOpenModal(true)}
-			/>
-			<div className='bottom-imgs'>
-				{images?.map((image, index) => (
-					<div className={`img-small ${selected(index)}`} key={index}>
-						<Image
-							src={image.url}
-							alt='Specific product image'
-							width={62}
-							height={62}
-							layout='fixed'
-							objectFit='cover'
-							onClick={() => setTab(index)}
-						/>
-					</div>
-				))}
+		<>
+			<div className='carousel-image-container'>
+				<Carousel variant='dark' fade>
+					{images?.map((image, index) => (
+						<Carousel.Item key={index}>
+							<div className='carousel-img-wrapper'>
+								<Image
+									src={image.url}
+									alt='Specific product image'
+									layout='fill'
+									objectFit='cover'
+									onClick={() => setOpenModal(true)}
+									priority
+								/>
+							</div>
+						</Carousel.Item>
+					))}
+				</Carousel>
 			</div>
 			{openModal && (
-				<Modal setOpen={setOpenModal}>
+				<Modal setOpen={setOpenModal} open={openModal}>
 					<div className='modal-content-img'>
 						<Image
 							src={images[tab].url}
@@ -49,7 +38,7 @@ const ImageSlider = ({ images }) => {
 					</div>
 				</Modal>
 			)}
-		</div>
+		</>
 	)
 }
 

@@ -1,6 +1,6 @@
 import Layout from "@comps/layout/Layout"
 import "@styles/globals.scss"
-import { ContextProvider } from "@context/GlobalContext"
+import { MyContextProvider } from "@context/GlobalContext"
 import Notify from "@comps/assets/Notify"
 import { SessionProvider } from "next-auth/react"
 import { useEffect, useState } from "react"
@@ -23,12 +23,12 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<SessionProvider session={pageProps.session}>
-			<ContextProvider>
+			<MyContextProvider>
 				<Notify urlLoading={loading} />
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
-			</ContextProvider>
+			</MyContextProvider>
 		</SessionProvider>
 	)
 }

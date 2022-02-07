@@ -34,7 +34,7 @@ export const pageTitle = (link) => {
 	return title
 }
 
-export const authHead = (link) => {
+export const customHead = (link) => {
 	if (link.pathname === "/auth") {
 		return (
 			<>
@@ -45,6 +45,16 @@ export const authHead = (link) => {
 					rel='stylesheet'
 				/>
 			</>
+		)
+	}
+	if (link.pathname === "/products/[id]") {
+		return (
+			<link
+				rel='stylesheet'
+				href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
+				integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
+				crossOrigin='anonymous'
+			/>
 		)
 	}
 	return null

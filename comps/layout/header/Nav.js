@@ -9,14 +9,13 @@ import Link from "next/link"
 const Nav = ({ isActive }) => {
 	const user = useSession()?.data?.user
 	const [navActive, setNavActive] = useState(false)
-	const [customDoc, setCustomDoc] = useState(null)
 
 	useEffect(() => {
-		setCustomDoc(document)
-	}, [navActive])
-
-	useEffect(() => {
-		navActive ? customDoc?.querySelector("html")?.style?.overflowY = "hidden" : customDoc?.querySelector("html")?.style?.overflowY = "unset"
+		if (navActive) {
+			document.querySelector("html").style.overflowY = "hidden"
+		} else {
+			document.querySelector("html").style.overflowY = "visible"
+		}
 	}, [navActive])
 
 	const links = [
@@ -31,10 +30,11 @@ const Nav = ({ isActive }) => {
 
 	const profile = {
 		link: user ? "/profile" : "/auth",
-		title: user && user?.name ? user?.name : "Sign in",
-		avatar: user && user?.image
-			? user?.image
-			: "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
+		title: user ? user?.name : "Sign in",
+		avatar:
+			user && user?.image
+				? user?.image
+				: "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png",
 	}
 
 	const NavActiveClassName = navActive ? "active" : ""

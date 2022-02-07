@@ -22,7 +22,7 @@ footer {
 				max-width: 19rem;
 				height: auto;
 				margin-bottom: 1rem;
-				@include pressed;
+				cursor: pointer;
 
 				svg {
 					width: max-content;

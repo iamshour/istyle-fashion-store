@@ -117,3 +117,13 @@
 		color: var(--main-bg-light);
 	}
 }
+
+.disabled-btn {
+	cursor: not-allowed !important;
+	background: rgba(0, 0, 0, 0.6) !important;
+
+	.icon {
+		position: relative;
+		top: -1px;
+	}
+}
