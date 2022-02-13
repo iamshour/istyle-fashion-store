@@ -21,8 +21,16 @@ export default NextAuth({
 			clientSecret: process.env.FACEBOOK_SECRET,
 		}),
 		EmailProvider({
-			server: process.env.EMAIL_SERVER,
-			from: process.env.EMAIL_FROM,
+			server: {
+				host: "smtp-relay.sendinblue.com",
+				service: "sendinblue",
+				port: 587,
+				auth: {
+					user: process.env.SMTP_KEY,
+					pass: process.env.SMTP_PASS,
+				},
+			},
+			from: process.env.SENDER_EMAIL,
 			async sendVerificationRequest({
 				identifier: email,
 				url,
@@ -54,11 +62,14 @@ export default NextAuth({
 
 			const user = session?.user
 
-			user?.name === undefined ? user?.email?.match(/^.*(?=@)/g)[0] : user?.name
+			if (user?.name === undefined || user?.name === null) {
+				user.name = user.email?.match(/^.*(?=@)/g)[0]
+			}
 
-			user?.image === undefined
-				? "https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
-				: user?.image
+			if (user?.image === undefined || user?.image === null) {
+				user.image =
+					"https://res.cloudinary.com/mooskilee/image/upload/v1643272836/blank-profile-picture-973460_640_caalj3_rb7tte.png"
+			}
 
 			return Promise.resolve(session)
 		},

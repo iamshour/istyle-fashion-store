@@ -1,15 +1,16 @@
 @import "./resets";
 @import "./mixins";
 @import "./buttons";
-@import "@pages/404/404";
-@import "@pages/auth/auth";
-@import "@pages/cart/cart";
-@import "@pages/profile/profile";
-@import "@pages/products/products";
-@import "@pages/products/singleProduct";
-@import "@comps/layout/footer/footer";
-@import "@comps/layout/header/header";
-@import "@comps/assets/assets";
+@import "@pages/404";
+@import "@pages/auth";
+@import "@pages/cart";
+@import "@pages/profile";
+@import "@pages/products";
+@import "@pages/products/[id]";
+@import "@comps/layout/footer";
+@import "@comps/layout/header";
+@import "@comps/fragments";
+@import "@comps/notify";
 
 label,
 textarea,

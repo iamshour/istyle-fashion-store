@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Modal from "@comps/assets/Modal"
+import Modal from "@comps/fragments/Modal"
 import Image from "next/image"
 import { Carousel } from "react-bootstrap"
 

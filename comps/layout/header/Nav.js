@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react"
+import Link from "next/link"
 import Image from "next/image"
 //COMPS
 import { ThemeBtn } from "./ThemeBtn"
-import Logo from "@comps/assets/Logo"
-import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
-import Link from "next/link"
+import Logo from "@comps/fragments/Logo"
 
 const Nav = ({ isActive }) => {
 	const user = useSession()?.data?.user

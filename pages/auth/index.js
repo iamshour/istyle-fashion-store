@@ -24,7 +24,7 @@ export default function Auth({ providers }) {
 			payload: { loading: true },
 		})
 		e.preventDefault()
-		let email = emailInput.current.value
+		let email = emailInput.current.value.trim()
 		const provider = providers.email
 
 		const errorMessage = emailValidate(email)
@@ -74,7 +74,11 @@ export default function Auth({ providers }) {
 		if (queryError) {
 			dispatch({
 				type: NOTIFY,
-				payload: { error: `An error occured related to: ${queryError}` },
+				payload: {
+					error: queryError.startsWith("OAuthAccountNotLinked")
+						? "Email is used for another authentication provider. Just Try another auth method."
+						: `An error occured related to: ${queryError}`,
+				},
 			})
 			router.replace("/auth", undefined, { shallow: true })
 		}
@@ -98,7 +102,12 @@ export default function Auth({ providers }) {
 					</div>
 					<div className='input-bar-icon'>
 						<HiOutlineMail className='icon' />
-						<input type='text' placeholder='Enter your email' ref={emailInput} />
+						<input
+							type='text'
+							placeholder='Enter your email'
+							ref={emailInput}
+							spellCheck={false}
+						/>
 					</div>
 					<button type='submit' className='btn email-btn'>
 						Continue

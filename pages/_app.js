@@ -1,7 +1,7 @@
 import Layout from "@comps/layout/Layout"
 import "@styles/globals.scss"
 import { MyContextProvider } from "@context/GlobalContext"
-import Notify from "@comps/assets/Notify"
+import Notify from "@comps/notify"
 import { SessionProvider } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
