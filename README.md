@@ -1,35 +1,27 @@
-// background: url("https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80")
-// no-repeat;
+# iStyle Fashion Store 👚👗
 
-// document.addEventListener('DOMContentLoaded', function () {window.setTimeout(document.querySelector('svg').classList.add('animated'),1000);})
+<br />
 
-<!-- const [openModal, setOpenModal] = useState(false)
+👕 Modern E-commerce app focused on the latest fashion trends!<br />
+👨‍👩‍👦 All Categories included: Men, Women, and Kids <br />
+🚧 P.S. App is still under construction...<br />
 
-<button className='btn btn-large' onClick={() => setOpenModal(true)}>
-    CLICK ME
-</button>
-{openModal && (
-    <Modal setOpen={setOpenModal}>
-        <div className='modal-content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
-                tincidunt enim, quis porttitor felis ornare in. Curabitur dignissim tempus
-                dictum. Sed at felis sodales, fringilla turpis ut, efficitur leo. Etiam
-                mollis ligula vitae tellus tempus, nec iaculis arcu cursus. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                Praesent dapibus convallis leo vel porta. Quisque fermentum, urna eu
-                tincidunt pellentesque, nisi ligula ornare metus, id suscipit metus lacus
-                quis dolor. Vestibulum molestie nunc sit amet nisi accumsan euismod.
-                Aliquam erat volutpat
-            </p>
-        </div>
-    </Modal>
-)} -->
+<br />
 
-// const [formData, setFormData] = useState({
-// title: "",
-// description: "",
-// })
-// const changeHandler = (e) => {
-// setFormData({ ...formData, [e.target.name]: e.target.value })
-// }
+## App Info ℹ️
+
+Full Stack E-commerce webapp built with Next.js, in adition to CRUD functionalities for both Admins (adding/editing/deleting products with an admin dashboard), and for Users as well (Viewing products, adding a product to cart/favorites tab, editing profile, purchasing products using Stripe.js, receiving transaction emails, etc...) Fully designed and developed by me! Built mainly with Next.js and its built-in APIs handling, in addition to using MongoDb, Next-auth for handling authentication, react hooks, SASS preprocessor, and react-Bootstrap for the carousel slider.
+
+<br />
+<br />
+
+## App Idea 💡
+
+I've created this app on my free time as a side project. The app is using Mock data to simulate a real E-commerce shopping app, while I was inspired by many similar E-commerce apps to produce this modern UI and functionality. I tend to work on many side projects on my free time to keep a refreshed memory, while it's also a lot of fun! If you like what I do, hit me up & lets chat!
+
+<br />
+<br />
+
+## Learn More 👨‍💻
+
+Check out my [Portfolio website](https://iamshour.com) & [Github Profile](https://github.com/iamshour) for more cool projects.
