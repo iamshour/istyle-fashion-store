@@ -177,6 +177,22 @@ header {
 		justify-content: space-between;
 		z-index: 14;
 	}
+	.cart-btn {
+		position: relative;
+		.badge {
+			position: absolute;
+			width: 1.8rem;
+			height: 1.8rem;
+			border-radius: 50%;
+			font-size: 1rem;
+			background: var(--main-bg-light);
+			color: var(--font);
+			bottom: -4px;
+			right: -4px;
+			@include centering;
+			@include fade-in;
+		}
+	}
 	.cart-btn.active {
 		color: var(--main-bg-light);
 	}

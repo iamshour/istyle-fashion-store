@@ -12,11 +12,9 @@ const ProductCard = ({ product }) => {
 	const favoritesCheck = (productId) => {
 		return (
 			<button
-				className='favorites-btn'
+				className={`favorites-btn ${favorites?.includes(productId) ? "fav-added" : ""}`}
 				onClick={() => dispatch(addToFavorites(productId, favorites))}>
-				<BsSuitHeartFill
-					className={`icon ${favorites.includes(productId) ? "fav-added" : ""}`}
-				/>
+				<BsSuitHeartFill className='icon' />
 			</button>
 		)
 	}

@@ -1,4 +1,4 @@
-import ProductCard from "@comps/products/ProductCard"
+import ProductCard from "@comps/products/productCard"
 import { getData } from "@utility/axiosCalls"
 import { useState } from "react"
 
