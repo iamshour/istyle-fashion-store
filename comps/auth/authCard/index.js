@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { signIn } from "next-auth/react"
 import { emailValidate } from "@utility/validation"
 import AuthBtn from "./children/AuthBtn"
+import { NOTIFY } from "@context/types"
 import axios from "axios"
 //ICONS
 import { HiOutlineMail } from "react-icons/hi"

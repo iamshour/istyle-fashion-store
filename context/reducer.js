@@ -4,7 +4,7 @@ import {
 	REMOVE_FROM_CART,
 	ADD_TO_FAVORITES,
 	REMOVE_FROM_FAVORITES,
-} from "./Actions"
+} from "./types"
 
 export const reducer = (state, { type, payload }) => {
 	switch (type) {

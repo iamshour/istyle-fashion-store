@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import { DataContext } from "@context/GlobalContext"
-import { NOTIFY } from "@context/Actions"
+import { NOTIFY } from "@context/types"
 import { getSession, getProviders } from "next-auth/react"
 //COMPS
 import AuthSvg from "@comps/auth/authSvg"

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react"
 import { DataContext } from "@context/GlobalContext"
 import Loading from "@comps/fragments/Loading"
-import { NOTIFY } from "@context/Actions"
+import { NOTIFY } from "@context/types"
 
 const Notify = ({ urlLoading }) => {
 	const [{ notify }, dispatch] = useContext(DataContext)
