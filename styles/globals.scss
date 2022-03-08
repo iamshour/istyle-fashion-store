@@ -9,6 +9,8 @@
 @import "@pages/products/[id]";
 @import "@comps/layout/footer";
 @import "@comps/layout/header";
+@import "@comps/auth/authCard";
+@import "@comps/auth/authSvg";
 @import "@comps/fragments";
 @import "@comps/notify";
 
@@ -41,6 +43,7 @@ input {
 		background: transparent;
 		border: 1px solid var(--main-bg-light);
 		border-radius: 4px;
+		transition: border-color 250ms ease-in-out;
 
 		&:focus {
 			border-color: var(--main-bg-dark);
@@ -54,11 +57,13 @@ input {
 	align-items: center;
 	justify-content: flex-start;
 	background: transparent;
+	color: var(--main-bg-light);
 	border: 1px solid var(--main-bg-light);
 	border-radius: 4px;
+	transition: border-color 250ms ease-in-out, color 250ms ease-in-out;
 
 	.icon {
-		color: var(--main-bg-light);
+		color: inherit;
 		font-size: 2.2rem;
 		margin-right: 1.2rem;
 	}
@@ -66,12 +71,11 @@ input {
 	input {
 		border: 0;
 		background: none;
+		color: var(--main-bg-dark);
 	}
 	&:focus-within {
 		border-color: var(--main-bg-dark);
-		.icon {
-			color: var(--main-bg-dark);
-		}
+		color: var(--main-bg-dark);
 	}
 }
 

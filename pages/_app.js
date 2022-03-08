@@ -1,4 +1,4 @@
-import Layout from "@comps/layout/Layout"
+import Layout from "@comps/layout"
 import "@styles/globals.scss"
 import { MyContextProvider } from "@context/GlobalContext"
 import Notify from "@comps/notify"

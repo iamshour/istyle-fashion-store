@@ -17,9 +17,8 @@
 		bottom: 0;
 		background: var(--glass);
 		filter: blur(1px);
-		backdrop-filter: blur(32px);
+		backdrop-filter: blur(4px);
 		border-radius: 8px;
-		border: 0.1px solid rgba(0, 0, 0, 0.1);
 	}
 }
 
@@ -77,8 +76,9 @@
 		background: var(--main-bg-light);
 		border-radius: 12px;
 		opacity: 0;
-		transform: translateX(-20px);
-		transition: all 200ms ease-in;
+		transform: translateX(-45px);
+		will-change: transform;
+		transition: all 200ms ease-in 0.1s;
 	}
 
 	&:hover,

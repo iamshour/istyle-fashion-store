@@ -20,6 +20,7 @@ header {
 			background: var(--font-light);
 			border-radius: 4px;
 			transition: all 400ms ease-in-out;
+			will-change: transform;
 			left: 8px;
 
 			&:nth-of-type(1) {

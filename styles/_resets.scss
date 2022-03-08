@@ -19,17 +19,13 @@ $breakpoint-max-desktop: 1800px;
 	--second-bg-light: #00dac0;
 	--second-bg-dark: #00a28a;
 
-	// --grad-1: linear-gradient(90deg, #e9face 0%, #bfe5f7 100%);
-
-	--glass: rgba(255, 255, 255, 0.7);
+	--glass: rgba(255, 255, 255, 0.2);
 
 	--google-btn-bg: #ffffff;
 	--google-btn-bg-pressed: #cac4c4;
 	--google-btn-font: rgba(0, 0, 0, 54%);
 
 	--auth-page-bg: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5dd88' fill-opacity='0.33' fill-rule='evenodd'%3E%3Cpath d='M0 0h35v35H0V0zm5 5h25v25H5V5zm5 5h15v15H10V10zm5 5h5v5h-5v-5zM40 5h25v25H40V5zm5 5h15v15H45V10zm5 5h5v5h-5v-5zM70 35H35v35h35V35zm-5 5H40v25h25V40zm-5 5H45v15h15V45zm-5 5h-5v5h5v-5zM30 40H5v25h25V40zm-5 5H10v15h15V45zm-5 5h-5v5h5v-5z'/%3E%3C/g%3E%3C/svg%3E");
-
-	// --auth-page-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23f3de91' fill-opacity='0.29'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 [data-theme="dark"] {

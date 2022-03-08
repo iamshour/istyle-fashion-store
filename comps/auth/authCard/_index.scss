@@ -1,0 +1,116 @@
+.auth-container {
+	.wrapper {
+		.auth-card {
+			padding: 2.4rem;
+			border-radius: 16px;
+			@include glass;
+			max-width: 32rem;
+			border: 1px solid #e8debe;
+			overflow: hidden;
+
+			form,
+			.social-auth-btns {
+				position: relative;
+				z-index: inherit;
+			}
+
+			form {
+				width: 100%;
+				height: auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				.top {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					margin-bottom: 4rem;
+
+					h4 {
+						font-size: 3.2rem;
+						color: var(--main-bg-light);
+						font-weight: 400;
+						margin-bottom: 1.4rem;
+					}
+
+					.top-action {
+						width: 100%;
+						@include centering;
+						justify-content: flex-start;
+						h2 {
+							font-size: 1.2rem;
+							color: var(--font);
+							margin-right: 0.8rem;
+						}
+						button {
+							@include line-hover;
+							&::before {
+								transform: translateX(-15px);
+							}
+
+							p {
+								font-size: 1.2rem;
+								font-weight: 700;
+								color: var(--main-bg-dark);
+							}
+						}
+					}
+				}
+
+				.input-bar-icon {
+					margin-bottom: 1.8rem;
+				}
+
+				h5 {
+					font-size: 1rem;
+					color: var(--main-bg-dark);
+					text-align: center;
+					font-weight: 400;
+					max-width: 22rem;
+					margin: 2rem auto;
+				}
+			}
+			.social-auth-btns {
+				@include centering;
+				flex-direction: column;
+
+				h4 {
+					font-size: 1.2rem;
+					margin-bottom: 2.4rem;
+					color: var(--main-bg-light);
+					position: relative;
+					overflow-x: visible;
+					&::before,
+					&::after {
+						content: "";
+						position: absolute;
+						width: 100px;
+						height: 1px;
+						border-radius: 20px;
+						top: 50%;
+						bottom: 50%;
+						background: var(--main-bg-light);
+					}
+					&::before {
+						left: 28px;
+					}
+					&::after {
+						right: 28px;
+					}
+				}
+			}
+
+			.signup-form {
+				.top {
+					margin-bottom: 4rem;
+
+					h4 {
+						font-size: 2.63rem;
+					}
+				}
+			}
+		}
+	}
+}

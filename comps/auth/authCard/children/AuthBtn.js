@@ -1,10 +1,6 @@
 import { FaFacebookF } from "react-icons/fa"
 import GoogleLogo from "./GoogleLogo"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/router"
-import { NOTIFY } from "@context/Actions"
-import { useContext, useEffect } from "react"
-import { DataContext } from "@context/GlobalContext"
 
 export default function AuthBtn({ provider }) {
 	return (
