@@ -1,37 +1,33 @@
 export const pageClassName = (link) => {
-	const className =
-		link.pathname === "/"
-			? "home-page"
-			: link.pathname === "/auth"
-			? "auth-page"
-			: link.pathname === "/cart"
-			? "cart-page"
-			: link.pathname === "/products"
-			? "products-page"
-			: link.pathname === "/products/[id]"
-			? "single-product-page"
-			: link.pathname === "/profile"
-			? "profile-page"
-			: ""
-	return className
+	return link.pathname === "/"
+		? "home-page"
+		: link.pathname === "/auth"
+		? "auth-page"
+		: link.pathname === "/cart"
+		? "cart-page"
+		: link.pathname === "/products"
+		? "products-page"
+		: link.pathname === "/products/[id]"
+		? "single-product-page"
+		: link.pathname === "/profile"
+		? "profile-page"
+		: ""
 }
 
 export const pageTitle = (link) => {
-	const title =
-		link.pathname === "/"
-			? "Home"
-			: link.pathname === "/auth"
-			? "Sign In"
-			: link.pathname === "/cart"
-			? "Cart"
-			: link.pathname === "/products"
-			? "Products"
-			: link.pathname === "/products/[id]"
-			? "Product details"
-			: link.pathname === "/profile"
-			? "Profile"
-			: ""
-	return title
+	return link.pathname === "/"
+		? "Home"
+		: link.pathname === "/auth"
+		? "Sign In"
+		: link.pathname === "/cart"
+		? "Cart"
+		: link.pathname === "/products"
+		? "Products"
+		: link.pathname === "/products/[id]"
+		? "Product details"
+		: link.pathname === "/profile"
+		? "Profile"
+		: ""
 }
 
 export const customHead = (link) => {

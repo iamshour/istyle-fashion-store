@@ -1,0 +1,35 @@
+.cart-page {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.checkout-section {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		padding: 2rem;
+		background: var(--main-bg-dark);
+
+		.balance {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			width: 100%;
+		}
+
+		h1 {
+			font-size: 2.4rem;
+			color: var(--font);
+		}
+
+		p {
+			font-size: 1.7rem;
+		}
+	}
+
+	button {
+		padding: 1rem;
+	}
+}
