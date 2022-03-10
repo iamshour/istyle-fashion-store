@@ -1,35 +1,138 @@
 .cart-page {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-
-	.checkout-section {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-		padding: 2rem;
-		background: var(--main-bg-dark);
-
-		.balance {
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
+	.items-section {
+		.item {
+			margin: 0 auto;
 			width: 100%;
-		}
+			max-width: 40rem;
+			height: 16rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 1rem;
+			gap: 2rem;
 
-		h1 {
-			font-size: 2.4rem;
-			color: var(--font);
-		}
+			.left {
+				position: relative;
+				height: 100%;
+				width: 100%;
+				flex: 1;
+			}
 
-		p {
-			font-size: 1.7rem;
-		}
-	}
+			.right {
+				flex: 2;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
 
-	button {
-		padding: 1rem;
+				.top,
+				.bottom {
+					height: auto;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+				}
+
+				.top {
+					width: 100%;
+					h3 {
+						font-size: 1.4rem;
+						color: var(--font-very-light);
+					}
+
+					label {
+						position: relative;
+						overflow: hidden;
+						width: 4rem;
+						height: 4rem;
+						color: var(--font);
+						transition: color 250ms ease-in-out;
+						cursor: pointer;
+
+						.icon {
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							font-size: 2.4rem;
+							color: inherit;
+							pointer-events: none;
+						}
+						select {
+							all: unset !important;
+							width: 100% !important;
+							height: 100% !important;
+
+							option {
+								font-size: 1.4rem;
+								color: var(--font);
+							}
+						}
+						.hide {
+							opacity: 0 !important;
+						}
+
+						&:hover,
+						&:active {
+							color: var(--main-bg-light);
+						}
+					}
+				}
+
+				.item-name {
+					font-size: 1.4rem;
+					color: var(--font);
+					cursor: pointer;
+				}
+
+				.bottom {
+					width: 60%;
+					margin-inline: auto;
+
+					button {
+						width: 2.8rem;
+						height: 2.8rem;
+						background-color: var(--main-bg-light);
+						color: var(--font);
+						font-size: 1.8rem;
+						border-radius: 4px;
+						cursor: pointer;
+						transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+
+						&:hover,
+						&:active {
+							background-color: var(--main-bg-dark);
+							color: var(--app-bg);
+						}
+
+						&:disabled {
+							cursor: not-allowed;
+							filter: brightness(1.2);
+							&:hover,
+							&:active {
+								background-color: var(--main-bg-light);
+								color: var(--font);
+							}
+						}
+					}
+
+					h4 {
+						font-size: 1.8rem;
+						width: 80px;
+						text-align: center;
+					}
+				}
+			}
+		}
+		.item.delete {
+			will-change: transform;
+			animation: delete 250ms ease-in-out forwards;
+			transform-origin: center 50%;
+			@keyframes delete {
+				100% {
+					transform: scale(0);
+				}
+			}
+		}
 	}
 }

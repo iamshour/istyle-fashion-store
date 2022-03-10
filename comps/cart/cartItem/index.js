@@ -1,41 +1,77 @@
+import { DataContext } from "@context/GlobalContext"
+import { ADD_TO_FAVORITES, REMOVE_FROM_CART } from "@context/types"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useContext, useRef } from "react"
 import { BsThreeDotsVertical } from "react-icons/bs"
 
-export default function CartItem({ item }) {
-	const [quantity, setQuantity] = useState(1)
+export default function CartItem({ item, handleDecrement, handleIncrement }) {
+	const { images, price, name, _id } = item.data
+	const [{ favorites }, dispatch] = useContext(DataContext)
+
+	const itemRef = useRef()
+
+	const handleOptions = (e) => {
+		e.target.classList.add("hide")
+
+		itemRef.current.classList.add("delete")
+
+		setTimeout(() => {
+			dispatch({
+				type: REMOVE_FROM_CART,
+				payload: _id,
+			})
+		}, 300)
+
+		if (e.target.value.startsWith("move")) {
+			!favorites?.includes(_id) &&
+				dispatch({
+					type: ADD_TO_FAVORITES,
+					payload: _id,
+				})
+		}
+	}
+
 	return (
-		<div className='item'>
-			<Link href={`products/${item._id}`}>
+		<div className='item' ref={itemRef}>
+			<Link href={`products/${_id}`}>
 				<a className='left'>
 					<Image
-						src={item?.images[0]?.url}
-						alt={item.name}
+						src={images[0]?.url}
+						alt={name}
 						layout='fill'
 						objectFit='cover'
+						priority
 					/>
 				</a>
 			</Link>
 			<div className='right'>
 				<div className='top'>
-					<h3>${item?.price}</h3>
+					<h3>${price}</h3>
 					<label>
 						<BsThreeDotsVertical className='icon' />
-						<select>
+						<select onChange={handleOptions}>
 							<option defaultValue='' style={{ display: "none" }} />
 							<option value='delete'>Delete</option>
 							<option value='move'>Move to favorites</option>
 						</select>
 					</label>
 				</div>
-				<Link href={`products/${item._id}`}>
-					<a className='item-name'>{item?.name}</a>
+				<Link href={`products/${_id}`}>
+					<a className='item-name'>{name}</a>
 				</Link>
 				<div className='bottom'>
-					<button onClick={() => setQuantity(quantity - 1)}>-</button>
-					<h4 className='value'>{quantity}</h4>
-					<button onClick={() => setQuantity(quantity + 1)}>+</button>
+					<button
+						disabled={item.quantity === 1 ? true : false}
+						onClick={() => handleDecrement(_id, item)}>
+						-
+					</button>
+					<h4 className='value'>{item.quantity}</h4>
+					<button
+						disabled={item.quantity === item.data.inStock ? true : false}
+						onClick={() => handleIncrement(_id, item)}>
+						+
+					</button>
 				</div>
 			</div>
 		</div>

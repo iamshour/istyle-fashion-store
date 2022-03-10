@@ -1,52 +1,78 @@
 import { getData } from "@utility/axiosCalls"
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { DataContext } from "@context/GlobalContext"
 import CartItem from "@comps/cart/cartItem"
+import CheckoutCard from "@comps/cart/CheckoutCard"
 
 export default function Cart() {
 	const [{ cart }, dispatch] = useContext(DataContext)
 	const [cartItems, setCartItems] = useState([])
 	const [balance, setBalance] = useState(0)
-	console.log(cartItems)
 
 	useEffect(() => {
-		cartItems.forEach((item) => {
-			setBalance((prev) => prev + item.price)
-		})
-	}, [cartItems])
+		if (cart?.length > 0) {
+			let itemsArr = []
 
-	useEffect(() => {
-		const cartPromises = cart.map(async (id) => {
-			const { data } = await getData(`products/${id}`)
-			return data
-		})
+			const getProducts = async () => {
+				for (const id of cart) {
+					const { data } = await getData(`products/${id}`)
+					// itemsArr.push(data)
+					itemsArr.push({ data, quantity: 1 })
+				}
 
-		const getProducts = async () => {
-			const items = await Promise.all(cartPromises)
-			setCartItems(items)
+				setCartItems(itemsArr)
+			}
+
+			getProducts()
 		}
-
-		getProducts()
 	}, [cart])
 
+	useEffect(() => {
+		const totalPrices = cartItems.reduce((prev, current) => {
+			return prev + current.data.price * current.quantity
+		}, 0)
+
+		setBalance(totalPrices)
+	}, [cartItems])
+
 	if (cart.length === 0) return <div className='empty'>Cart Is Empty</div>
+
+	const sorting = cartItems.sort((a, b) => {
+		return a.data.price - b.data.price > 0 ? 1 : -1
+	})
+
+	const handleDecrement = (id, product) => {
+		const newArr = cartItems.filter((i) => {
+			return i.data._id !== id
+		})
+		newArr.push({ data: product.data, quantity: product.quantity - 1 })
+		setCartItems(newArr)
+	}
+	const handleIncrement = (id, product) => {
+		const newArr = cartItems.filter((i) => {
+			return i.data._id !== id
+		})
+		newArr.push({ data: product.data, quantity: product.quantity + 1 })
+		setCartItems(newArr)
+	}
 
 	return (
 		<>
 			<section className='items-section'>
 				<h1>Shopping Cart</h1>
 				<div className='container'>
-					{cartItems?.map((item) => (
-						<CartItem key={item?._id} item={item} />
+					{sorting?.map((item) => (
+						<CartItem
+							key={item?.data._id}
+							item={item}
+							handleDecrement={handleDecrement}
+							handleIncrement={handleIncrement}
+						/>
 					))}
 				</div>
 			</section>
 			<section className='checkout-section'>
-				<div className='balance'>
-					<h1>Your Balance</h1>
-					<p>{balance}</p>
-				</div>
-				<button className='btn btn-medium'>Checkout</button>
+				<CheckoutCard balance={balance} />
 			</section>
 		</>
 	)
