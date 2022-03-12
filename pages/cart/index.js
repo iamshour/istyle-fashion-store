@@ -2,7 +2,7 @@ import { getData } from "@utility/axiosCalls"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { DataContext } from "@context/GlobalContext"
 import CartItem from "@comps/cart/cartItem"
-import CheckoutCard from "@comps/cart/checkoutCard"
+import Checkout from "@comps/cart/checkout"
 
 export default function Cart() {
 	const [{ cart }, dispatch] = useContext(DataContext)
@@ -72,7 +72,7 @@ export default function Cart() {
 				</div>
 			</section>
 			<section className='checkout-section'>
-				<CheckoutCard balance={balance} />
+				<Checkout balance={balance} />
 			</section>
 		</>
 	)

@@ -1,4 +1,4 @@
-export default function CheckoutCard({ balance }) {
+export default function Checkout({ balance }) {
 	return (
 		<div className='checkout-card'>
 			<div className='balance'>
