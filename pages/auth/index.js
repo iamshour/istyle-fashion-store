@@ -24,7 +24,7 @@ export default function Auth({ providers }) {
 			})
 			router.replace("/auth", undefined, { shallow: true })
 		}
-	}, [queryError])
+	}, [queryError, dispatch, router])
 
 	return (
 		<div className='wrapper'>

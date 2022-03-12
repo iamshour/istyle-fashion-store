@@ -2,7 +2,7 @@ import { getData } from "@utility/axiosCalls"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { DataContext } from "@context/GlobalContext"
 import CartItem from "@comps/cart/cartItem"
-import CheckoutCard from "@comps/cart/CheckoutCard"
+import CheckoutCard from "@comps/cart/checkoutCard"
 
 export default function Cart() {
 	const [{ cart }, dispatch] = useContext(DataContext)
